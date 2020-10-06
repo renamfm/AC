@@ -1,0 +1,3 @@
+%files
+files = ['P1_Renato.mat', 'P2_Renato.mat', 'P3_Renato.mat', 'P4_Renato.mat', 'P5_Renato.mat',...
+    'P1_Sergio.mat', 'P2_Sergio.mat', 'P3_Sergio.mat', 'P4_Sergio.mat', 'P5_Sergio.mat'];
