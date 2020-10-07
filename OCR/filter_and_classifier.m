@@ -4,13 +4,10 @@ P = numbers;
 
 %TARGET
 load('PerfectArial.mat');
-
 T = Perfect;
-
 for i = 1:49
      T = [T Perfect];
- end
-
+end
 
 %CREATE ASSOCIATIVE MEMORY AS FILTER
 %net = network
@@ -23,11 +20,13 @@ filterB = configure(filterB,P,T);
 filterB.trainFcn = 'trainc';
 filterB.adaptFcn = 'learnp';
 
-view(filterB)
+%view(filterB)
 
 filterB = train(filterB,P,T);
 
-test = sim(filterB,P(:,9));
+load('P6_Sergio.mat'); %numeros que nao foram usados para treinar
+
+test = filterB(P6_Sergio(:,2)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
 
 showim(test)
 
