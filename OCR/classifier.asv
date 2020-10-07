@@ -33,22 +33,25 @@ classif.inputConnect(1) = 1
 classif.biasConnect(1) = 1
 classif.outputConnect(1) = 1
 
+
 %view(classif)
+
+%activation function
+net.layers{1}.transferFcn = 'hardlim' %binary
+
+%set the training function
+net.trainFcn = 'trainc'
+
+%learing algorithm
+net.adapFcn = 'learnp'
+
+
 
 %initialization of the network parameters
 W = rand(10,256); %generates matrix 10x256 random in (0 1)
 b = rand(10,1);
 classif.IW{1,1} = W;
 classif.b{1,1} = b;
-
-%activation function
-classif.layers{1}.transferFcn = 'hardlim' %binary
-
-%set the training function
-classif.trainFcn = 'trainc'
-
-%learing algorithm
-%classif.adapFcn = 'learn'
 
 %training parameters
 net.performParam.lr = 0.5; % learning rate
@@ -60,9 +63,9 @@ net.performFcn = 'sse'; % criterion
 classif = train(classif,P,T); 
 
 %final weights and bias after training phase
-W = classif.IW{1,1};
-b = classif.b{1,1};
+W = net.IW{1,1};
+b = net.b{1,1};
 
 %validation
 load('P6_Sergio.mat'); %numeros que nao foram usados para treinar
-test = classif(P6_Sergio(:,15)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
+test = filterB(P6_Sergio(:,15)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
