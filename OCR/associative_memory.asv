@@ -1,0 +1,28 @@
+%DATASET
+load('numbers.mat');
+P = numbers;
+
+%TARGET
+load('PerfectArial.mat');
+T = Perfect;
+for i = 1:49
+     T = [T Perfect];
+end
+
+%%Create the neural network:
+    %-One single layer
+    %-Linear acativation
+    %-No bias
+%net = network(numInputs,numLayers,biasConnect,inputConnect,layerConnect,outputConnect)
+net = network; %ou net = network(1,1);
+net.numInputs = 1;         %number of inputs
+net.inputs{1}.size = 256;  %input size
+
+net.numLayers = 1;         %number of layers
+net.layers{1}.size = 10;   %number of neurons
+
+net.biasConnect = 0;
+
+
+net.layers{1}.transferFcn = 'purelin'; %Função de ativação linear
+
