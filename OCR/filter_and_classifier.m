@@ -9,12 +9,12 @@ for i = 1:49
      T = [T Perfect];
 end
 
-%CREATE ASSOCIATIVE MEMORY AS FILTER
+%==========CREATE ASSOCIATIVE MEMORY AS FILTER==========%
 %net = network
 %%net.numInputs = 1
 %net.numLayers = 1
 
-%CREATE BINARY PERCEPTRON AS FILTER
+%==========CREATE BINARY PERCEPTRON AS FILTER==========%
 filterB = perceptron;
 filterB = configure(filterB,P,T);
 filterB.trainFcn = 'trainc';
@@ -26,12 +26,12 @@ filterB = train(filterB,P,T);
 
 load('P6_Sergio.mat'); %numeros que nao foram usados para treinar
 
-test = filterB(P6_Sergio(:,2)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
+test = filterB(P6_Sergio(:,15)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
 
 showim(test)
 
 
-%PARA QUANDO SE FIZER O CLASSIFIER
+%==========CLASSIFIER==========%
 %TARGET
 % t1 = [1 0 0 0 0 0 0 0 0 0]';
 % t2 = [0 1 0 0 0 0 0 0 0 0]';
