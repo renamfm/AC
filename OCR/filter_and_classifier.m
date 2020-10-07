@@ -1,9 +1,10 @@
-%DATASET
+%Load dataset
 load('numbers.mat');
 P = numbers;
 
-%TARGET
+%Load perfect numbers
 load('PerfectArial.mat');
+%Build the target matrix
 T = Perfect;
 for i = 1:49
      T = [T Perfect];
@@ -24,7 +25,7 @@ filterB.adaptFcn = 'learnp';
 
 filterB = train(filterB,P,T);
 
-load('P6_Sergio.mat'); %numeros que nao foram usados para treinar
+load('P6_Sergio.mat'); %Numbers that were not used for training
 
 test = filterB(P6_Sergio(:,4)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
 
