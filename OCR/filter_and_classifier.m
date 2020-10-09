@@ -16,18 +16,18 @@ end
 %net.numLayers = 1
 
 %==========CREATE BINARY PERCEPTRON AS FILTER==========%
-filterB = perceptron;
-filterB = configure(filterB,P,T);
-filterB.trainFcn = 'trainc';
-filterB.adaptFcn = 'learnp';
+net = perceptron;
+net = configure(net,P,T);
+net.trainFcn = 'trainc';
+net.adaptFcn = 'learnp';
 
-%view(filterB)
+%view(net)
 
-filterB = train(filterB,P,T);
+net = train(net,P,T);
 
 load('P6_Sergio.mat'); %Numbers that were not used for training
 
-test = filterB(P6_Sergio(:,4)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
+test = net(P6_Sergio(:,4)); %test = sim(net,P6_Sergio(:,2)); %seria a mesma coisa
 
 showim(test)
 
