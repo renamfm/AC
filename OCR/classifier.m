@@ -1,6 +1,6 @@
 %==========CLASSIFIER==========%
 %DATASET
-load('numbers.mat');
+load('Data/numbers.mat');
 P = numbers;
 
 %TARGET
@@ -24,27 +24,27 @@ end
 
 %Creating the classifier
 
-net = network(1,1) %network with 1 input and 1 layer   
-net.inputs{1}.size = 256 %single input with 256 values
-net.layers{1}.size = 10 %single layer with 10 neurons (one for each class)
+net = network(1,1); %network with 1 input and 1 layer   
+net.inputs{1}.size = 256; %single input with 256 values
+net.layers{1}.size = 10; %single layer with 10 neurons (one for each class)
 
 %connect input, bias and output to layer 1
-net.inputConnect(1) = 1
-net.biasConnect(1) = 1
-net.outputConnect(1) = 1
+net.inputConnect(1) = 1;
+net.biasConnect(1) = 1;
+net.outputConnect(1) = 1;
 
 %view(net)
 
 %activation function
 %net.layers{1}.transferFcn = 'hardlim' %binary
-net.layers{1}.transferFcn = 'purelin' %linear
+net.layers{1}.transferFcn = 'purelin'; %linear
 
 %set the training function
 %net.trainFcn = 'trainlm'
-net.trainFcn = 'trainc'
+net.trainFcn = 'trainlm';
 
 %learing algorithm
-net.adaptFcn = 'learnp'
+net.adaptFcn = 'learnp';
 
 %initialization of the network parameters
 W = rand(10,256); %generates matrix 10x256 random in (0 1)
@@ -66,8 +66,5 @@ W = net.IW{1,1};
 b = net.b{1,1};
 
 %validation
-load('P6_Sergio.mat'); %numeros que nao foram usados para treinar
-%test = net(P6_Sergio(:,1)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
-
-load('P6_Sergio.mat');
-test = net(test2)
+load('Data/P6_Sergio.mat'); %numeros que nao foram usados para treinar
+test = net(P6_Sergio(:,1)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
