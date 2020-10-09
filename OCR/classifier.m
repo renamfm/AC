@@ -36,10 +36,12 @@ net.outputConnect(1) = 1
 %view(net)
 
 %activation function
-net.layers{1}.transferFcn = 'hardlim' %binary
+%net.layers{1}.transferFcn = 'hardlim' %binary
+net.layers{1}.transferFcn = 'purelin' %linear
 
 %set the training function
-net.trainFcn = 'trainlm'
+%net.trainFcn = 'trainlm'
+net.trainFcn = 'trainc'
 
 %learing algorithm
 net.adaptFcn = 'learnp'
@@ -65,4 +67,7 @@ b = net.b{1,1};
 
 %validation
 load('P6_Sergio.mat'); %numeros que nao foram usados para treinar
-test = net(P6_Sergio(:,15)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
+%test = net(P6_Sergio(:,1)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
+
+load('P6_Sergio.mat');
+test = net(test2)
