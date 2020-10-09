@@ -1,3 +1,5 @@
+function net = classifier()
+
 %==========CLASSIFIER==========%
 %DATASET
 load('Data/numbers.mat');
@@ -68,3 +70,5 @@ b = net.b{1,1};
 %validation
 load('Data/P6_Sergio.mat'); %numeros que nao foram usados para treinar
 test = net(P6_Sergio(:,1)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
+
+end
