@@ -62,6 +62,7 @@ net.trainParam.goal = 1e-6; % goal=objective
 net.performFcn = 'sse'; % criterion 
 
 net = train(net,P,T); 
+save('Data/net.mat', 'net')
 
 %final weights and bias after training phase
 W = net.IW{1,1};
