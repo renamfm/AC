@@ -37,13 +37,18 @@ net.outputConnect(1) = 1;
 
 %view(net)
 
-%activation function
+%---------------- Select activation function----------
 %net.layers{1}.transferFcn = 'hardlim' %binary
 net.layers{1}.transferFcn = 'purelin'; %linear
+%net.layers{1}.transferFcn = 'logsig' %sigmoidal
 
-%set the training function
-%net.trainFcn = 'trainlm'
-net.trainFcn = 'trainlm';
+%---------------- Select training function----------
+net.trainFcn = 'trainlm'; %levenberg?marquardt
+%net.trainFcn = 'traingd'; %gradient
+%net.trainFcn = 'traingda'; %gradient descent with adaptive leaning rate
+%net.trainFcn = 'traingdm'; %gradient with moment
+%net.trainFcn = 'trainscg'; %scaled conjugate gradient 
+
 
 %learing algorithm
 net.adaptFcn = 'learnp';
@@ -59,7 +64,8 @@ net.performParam.lr = 0.5; % learning rate
 net.trainParam.epochs = 1000; % maximum epochs
 net.trainParam.show = 35; % show
 net.trainParam.goal = 1e-6; % goal=objective
-net.performFcn = 'sse'; % criterion 
+net.performFcn = 'sse'; % criterion
+%net.performFcn = 'mse'; % criterion 
 
 net = train(net,P,T); 
 save('Data/net.mat', 'net')
