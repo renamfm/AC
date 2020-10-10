@@ -1,10 +1,9 @@
 function ocrGui()
+    %GUI for Optical Character Recognition
+    option  = menu('Ah shit, were we go again!', 'Ok', 'Not really man');
 
-%GUI for Optical Character Recognition
-option  = menu('Ah shit, were we go again!', 'Ok', 'Not really man');
-
-if(option == 1)
-    mpaper();
-end
+    if(option == 1)
+        mpaper();
+    end
 
 end

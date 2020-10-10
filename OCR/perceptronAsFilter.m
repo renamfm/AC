@@ -1,23 +1,23 @@
 function pFilter = perceptronAsFilter()
-%Load dataset
-load('Data/numbers.mat');
-P = numbers;
+    %Load dataset
+    load('Data/numbers.mat');
+    P = numbers;
 
-T = getT(); %get target matrix
-%==========CREATE BINARY PERCEPTRON AS FILTER==========%
-pFilter = perceptron;
-pFilter = configure(pFilter,P,T);
-pFilter.trainFcn = 'trainc';
-pFilter.adaptFcn = 'learnp';
+    T = getT(); %get target matrix
+    
+    pFilter = perceptron;
+    pFilter = configure(pFilter,P,T);
+    pFilter.trainFcn = 'trainc';
+    pFilter.adaptFcn = 'learnp';
 
-%view(filterB)
+    %view(filterB)
 
-pFilter = train(pFilter,P,T);
+    pFilter = train(pFilter,P,T);
 
-save('Data/pFilter.mat', 'pFilter');
+    save('Data/pFilter.mat', 'pFilter');
 
-%%========TEST
-%load('P6_Sergio.mat'); %Numbers that were not used for training
-%test = filterB(P6_Sergio(:,4)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
-%showim(test)
+    %%========TEST
+    load('Data/P6_Sergio.mat'); %Numbers that were not used for training
+    test = pFilter(P6_Sergio(:,1)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
+    showim(test)
 end

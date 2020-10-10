@@ -1,7 +1,9 @@
 function Wp = associativeMemory()
-load('Data/numbers.mat', 'numbers');
-P1 = numbers;
-T = getT();
-Wp = T * pinv(P1);           %Weights
-%P2 = Wp * P1;               %Output
+    load('Data/numbers.mat', 'numbers');
+    P1 = numbers;
+    T = getT();
+    Wp = T * pinv(P1);           %Weights
+    %P2 = Wp * P1;               %Output
+    
+    %ver como e onde se calcula P2
 end
