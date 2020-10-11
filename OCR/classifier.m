@@ -20,11 +20,12 @@
     %%*****************************************************************
     
     
-    
     %Target
     T = createTarget(1000);
 
-
+    
+    %%********** CLASSIFIER COM 1 LAYER ***********************************
+    
     %Creating the classifier
     net = network(1,1); %network with 1 input and 1 layer   
     net.inputs{1}.size = 256; %single input with 256 values
@@ -34,12 +35,27 @@
     net.inputConnect(1) = 1;
     net.biasConnect(1) = 1;
     net.outputConnect(1) = 1;
+    
+    %%********** CLASSIFIER COM 2 LAYERS **********************************
+    
+    %Creating the classifier
+    %net = network(1,2); %network with 1 input and 1 layer   
+    %net.inputs{1}.size = 256; %layer 1 input with 256 values
+    %net.layers{1}.size = 15; %layer 1 with 15 neurons
+    %net.layers{2}.size = 10; %layer 2 with 10 neurons (one for each class)
+
+    %connect input, bias, layers and output
+    %net.inputConnect = [1; 0];
+    %net.biasConnect = [1 ; 1];
+    %net.layerConnect = [0 0 ; 1 0];
+    %net.outputConnect = [0 1];
+    
 
     %view(net)
 
     %---------------- Select activation function----------
-    %net.layers{1}.transferFcn = 'hardlim' %binary
-    net.layers{1}.transferFcn = 'purelin'; %linear
+    net.layers{1}.transferFcn = 'hardlim' %binary
+    %net.layers{1}.transferFcn = 'purelin'; %linear
     %net.layers{1}.transferFcn = 'logsig' %sigmoidal
 
     %---------------- Incremental training ----------
@@ -51,7 +67,7 @@
     %net.trainFcn = 'trainr'; %inputs are presented in random order
     
     %Learning algorithms to use when training methods are incremental
-    %net.adaptFcn = 'learnp'; %perceptron rule
+    net.adaptFcn = 'learnp'; %perceptron rule
     %net.adaptFcn = 'learnpn'; %normalized perceptron rule
     %net.adaptFcn = 'learngd'; %gradient rule
     %net.adaptFcn = 'learngdm'; %gradient rule improved with momentum
@@ -70,7 +86,7 @@
     %net.trainFcn = 'traingd'; %gradient descent
     %net.trainFcn = 'traingda'; %gradient descent with adaptive leaning rate
     %net.trainFcn = 'traingdm'; %gradient with moment
-    net.trainFcn = 'trainlm'; %Levenberg-Marquardt
+    %net.trainFcn = 'trainlm'; %Levenberg-Marquardt
     %net.trainFcn = 'trainscg'; %scaled conjugate gradient 
 
     
@@ -80,6 +96,12 @@
     b = rand(10,1);
     net.IW{1,1} = W;
     net.b{1,1} = b;
+    
+    %caso haja 2 layers
+    %net.IW{1,1} = rand(15,256);
+    %net.b{1,1} = rand(15,1);
+    %net.LW{2,1} = rand(10,15);
+    %net.b{2,1} = rand(10,1);
 
     %training parameters
     net.performParam.lr = 0.5; % learning rate
@@ -98,8 +120,14 @@
     W = net.IW{1,1};
     b = net.b{1,1};
 
+    %final weight and bias with 2 layers
+    %
+    %FALTA ISTO (se bem que não se utiliza em nenhum lado)
+    %
+    %
+    
     %validation
     load('Data/P6_Sergio.mat'); %numeros que nao foram usados para treinar
-    test = net(P6_Sergio(:,1)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
+    test = net(P6_Sergio(:,1)) %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
 
 %end
