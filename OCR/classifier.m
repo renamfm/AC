@@ -73,7 +73,7 @@
     %net.performFcn = 'mse'; % criterion 
 
     net = train(net,P,T); 
-    save('Data/net.mat', 'net')
+    save('Data/classifier.mat', 'net')
 
     %final weights and bias after training phase
     W = net.IW{1,1};
@@ -81,6 +81,6 @@
 
     %validation
     load('Data/P6_Sergio.mat'); %numeros que nao foram usados para treinar
-    test = net(P6_Sergio(:,1)) %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
+    test = net(P6_Sergio(:,1)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
 
 %end
