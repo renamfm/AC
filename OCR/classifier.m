@@ -5,7 +5,7 @@
     P = numbers;
     
     %Target
-    T = createTarget(500);
+    T = createTarget(1000);
 
 
     %Creating the classifier
@@ -36,7 +36,7 @@
     %Learning algorithms to use when training methods are incremental
     %net.adaptFcn = 'learnp'; %perceptron rule
     %net.adaptFcn = 'learnpn'; %normalized perceptron rule
-    net.adaptFcn = 'learngd'; %gradient rule
+    %net.adaptFcn = 'learngd'; %gradient rule
     %net.adaptFcn = 'learngdm'; %gradient rule improved with momentum
     %net.adaptFcn = 'learnh'; %hebb rule
     %net.adaptFcn = 'learnhd'; %hebb rule with decaying weight
@@ -53,7 +53,7 @@
     %net.trainFcn = 'traingd'; %gradient descent
     %net.trainFcn = 'traingda'; %gradient descent with adaptive leaning rate
     %net.trainFcn = 'traingdm'; %gradient with moment
-    %net.trainFcn = 'trainlm'; %Levenberg-Marquardt
+    net.trainFcn = 'trainlm'; %Levenberg-Marquardt
     %net.trainFcn = 'trainscg'; %scaled conjugate gradient 
 
     

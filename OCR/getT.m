@@ -4,7 +4,7 @@ function T = getT()
 
     %Build the target matrix
     T = Perfect;
-    for i = 1:49
+    for i = 1:99
          T = [T Perfect];
     end
 
