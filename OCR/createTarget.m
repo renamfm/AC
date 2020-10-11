@@ -11,7 +11,7 @@ function Target = createTarget(numInput)
     t9 = [0 0 0 0 0 0 0 0 1 0]';
     t0 = [0 0 0 0 0 0 0 0 0 1]';
 
-    T = []
+    T = [];
     
     j = 1;
     

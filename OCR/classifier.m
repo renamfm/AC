@@ -1,4 +1,4 @@
-function net = classifier()
+%function net = classifier()
 
     %Dataset
     load('Data/numbers.mat');
@@ -21,8 +21,8 @@ function net = classifier()
     %view(net)
 
     %---------------- Select activation function----------
-    net.layers{1}.transferFcn = 'hardlim' %binary
-    %net.layers{1}.transferFcn = 'purelin'; %linear
+    %net.layers{1}.transferFcn = 'hardlim' %binary
+    net.layers{1}.transferFcn = 'purelin'; %linear
     %net.layers{1}.transferFcn = 'logsig' %sigmoidal
 
     %---------------- Incremental training ----------
@@ -31,16 +31,16 @@ function net = classifier()
     %Training function
     %Incremental training 
     net.trainFcn = 'trainc'; %levenberg?marquardt %inputs are presented in cyclic order
-    %net.trainFnc = 'trainr'; %inputs are presented in random order
+    %net.trainFcn = 'trainr'; %inputs are presented in random order
     
     %Learning algorithms to use when training methods are incremental
     %net.adaptFcn = 'learnp'; %perceptron rule
-    net.adaptFcn = 'learnpn'; %normalized perceptron rule
-    %net.adaptFcn = 'learngd'; %gradient rule
-    %net.adaptFcn = 'learngdm' %gradient rule improved with momentum
-    %net.adaptFcn = 'learnh' %hebb rule
-    %net.adaptFcn = 'learnhd' %hebb rule with decaying weight
-    %net.adaptFcn = 'learnwh' %Widrow-Hoff learning rule
+    %net.adaptFcn = 'learnpn'; %normalized perceptron rule
+    net.adaptFcn = 'learngd'; %gradient rule
+    %net.adaptFcn = 'learngdm'; %gradient rule improved with momentum
+    %net.adaptFcn = 'learnh'; %hebb rule
+    %net.adaptFcn = 'learnhd'; %hebb rule with decaying weight
+    %net.adaptFcn = 'learnwh'; %Widrow-Hoff learning rule
     
     
     %---------------- Batch training ----------
@@ -81,6 +81,6 @@ function net = classifier()
 
     %validation
     load('Data/P6_Sergio.mat'); %numeros que nao foram usados para treinar
-    test = net(P6_Sergio(:,1)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
+    test = net(P6_Sergio(:,1)) %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
 
-end
+%end
