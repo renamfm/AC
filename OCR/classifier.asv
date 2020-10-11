@@ -8,20 +8,16 @@
     %%****************** UNCOMMENT TO USE THE FILTER ******************
     %Associative memory
     
-    %Wp = associativeMemory();
-    %P = Wp * P;
+    Wp = associativeMemory();
+    P = Wp * P;
     
     %Perceptron as Filte
-    %... Make sure pFilter is trained...
-    %load('Data/pFilter.mat', 'pFilter');
-    %P = pFilter(P);
-    %showim(P(:,15));
-    
-    %%*****************************************************************
+    pFilter = perceptronAsFilter()
+    P = pFilter(P);
+    shiwi
     
     
-    
-    %Target
+    %%Target
     T = createTarget(1000);
 
 
@@ -88,9 +84,7 @@
     net.trainParam.goal = 1e-6; % goal=objective
     net.performFcn = 'sse'; % criterion
     %net.performFcn = 'mse'; % criterion 
-    
-    
-    %***** ATENTION: Change the NN name before saving to avoid override ***
+
     net = train(net,P,T); 
     save('Data/classifier.mat', 'net')
 
