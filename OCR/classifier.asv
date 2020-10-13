@@ -54,7 +54,7 @@
     %view(net)
 
     %---------------- Select activation function----------
-    net.layers{1}.transferFcn = 'hardlim' %binary
+    %net.layers{1}.transferFcn = 'hardlim' %binary
     %net.layers{1}.transferFcn = 'purelin'; %linear
     %net.layers{1}.transferFcn = 'logsig' %sigmoidal
 
@@ -63,7 +63,7 @@
     
     %Training function
     %Incremental training 
-    net.trainFcn = 'trainc'; %levenberg?marquardt %inputs are presented in cyclic order
+    %net.trainFcn = 'trainc'; %levenberg?marquardt %inputs are presented in cyclic order
     %net.trainFcn = 'trainr'; %inputs are presented in random order
     
     %Learning algorithms to use when training methods are incremental
@@ -86,7 +86,7 @@
     %net.trainFcn = 'traingd'; %gradient descent
     %net.trainFcn = 'traingda'; %gradient descent with adaptive leaning rate
     %net.trainFcn = 'traingdm'; %gradient with moment
-    %net.trainFcn = 'trainlm'; %Levenberg-Marquardt
+    net.trainFcn = 'trainlm'; %Levenberg-Marquardt
     %net.trainFcn = 'trainscg'; %scaled conjugate gradient 
 
     
@@ -111,6 +111,12 @@
     net.performFcn = 'sse'; % criterion
     %net.performFcn = 'mse'; % criterion 
     
+    %divides dataset into training, validation and testing sets
+    net.divideFcn = 'divideind';
+    net.divideParam.trainInd = 1:800; 
+    net.divideParam.valInd = 801:900;
+    net.divideParam.testInd = :750;
+    
     
     %***** ATENTION: Change the NN name before saving to avoid override ***
     net = train(net,P,T); 
@@ -122,12 +128,12 @@
 
     %final weight and bias with 2 layers
     %
-    %
+    %FALTA ISTO (se bem que não se utiliza em nenhum lado)
     %
     %
     
     %validation
     load('Data/P6_Sergio.mat'); %numeros que nao foram usados para treinar
-    test = net(P6_Sergio(:,1)) %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
+    test = net(P6_Sergio(:,1)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
 
 %end
