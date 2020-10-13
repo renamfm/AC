@@ -54,8 +54,8 @@
     %view(net)
 
     %---------------- Select activation function----------
-    net.layers{1}.transferFcn = 'hardlim' %binary
-    %net.layers{1}.transferFcn = 'purelin'; %linear
+    %net.layers{1}.transferFcn = 'hardlim'; %binary
+    net.layers{1}.transferFcn = 'purelin'; %linear
     %net.layers{1}.transferFcn = 'logsig' %sigmoidal
     
     %Caso haja mais uma layer
@@ -69,11 +69,11 @@
     
     %Training function
     %Incremental training 
-    net.trainFcn = 'trainc'; %levenberg?marquardt %inputs are presented in cyclic order
+    %net.trainFcn = 'trainc'; %levenberg?marquardt %inputs are presented in cyclic order
     %net.trainFcn = 'trainr'; %inputs are presented in random order
     
     %Learning algorithms to use when training methods are incremental
-    net.adaptFcn = 'learnp'; %perceptron rule
+    %net.adaptFcn = 'learnp'; %perceptron rule
     %net.adaptFcn = 'learnpn'; %normalized perceptron rule
     %net.adaptFcn = 'learngd'; %gradient rule
     %net.adaptFcn = 'learngdm'; %gradient rule improved with momentum
@@ -126,7 +126,7 @@
     
     %***** ATENTION: Change the NN name before saving to avoid override ***
     net = train(net,P,T); 
-    save('Data/classifier.mat', 'net')
+    save('Data/net.mat', 'net')
 
     %final weights and bias after training phase
     W = net.IW{1,1};
