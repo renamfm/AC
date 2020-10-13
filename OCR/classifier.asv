@@ -54,8 +54,8 @@
     %view(net)
 
     %---------------- Select activation function----------
-    net.layers{1}.transferFcn = 'hardlim'; %binary
-    %net.layers{1}.transferFcn = 'purelin'; %linear
+    %net.layers{1}.transferFcn = 'hardlim'; %binary
+    net.layers{1}.transferFcn = 'purelin'; %linear
     %net.layers{1}.transferFcn = 'logsig' %sigmoidal
     
     %Caso haja mais uma layer
@@ -69,14 +69,14 @@
     
     %Training function
     %Incremental training 
-    net.trainFcn = 'trainc'; %levenberg?marquardt %inputs are presented in cyclic order
+    %net.trainFcn = 'trainc'; %levenberg?marquardt %inputs are presented in cyclic order
     %net.trainFcn = 'trainr'; %inputs are presented in random order
     
     %Learning algorithms to use when training methods are incremental
     %net.adaptFcn = 'learnp'; %perceptron rule
     %net.adaptFcn = 'learnpn'; %normalized perceptron rule
     %net.adaptFcn = 'learngd'; %gradient rule
-    net.adaptFcn = 'learngdm'; %gradient rule improved with momentum
+    %net.adaptFcn = 'learngdm'; %gradient rule improved with momentum
     %net.adaptFcn = 'learnh'; %hebb rule
     %net.adaptFcn = 'learnhd'; %hebb rule with decaying weight
     %net.adaptFcn = 'learnwh'; %Widrow-Hoff learning rule
@@ -86,7 +86,7 @@
     %Weight and biases updated athe the end  of an entire pass through the input data
     
     %Training function
-    %net.trainFcn = 'trainb';
+    net.trainFcn = 'trainb';
     
     %Learning algorithms are in batch implementation
     %net.trainFcn = 'traingd'; %gradient descent
