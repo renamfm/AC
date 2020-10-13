@@ -5,5 +5,5 @@ function Wp = associativeMemory()
     Wp = T * pinv(P1);           %Weights
     %P2 = Wp * P1;               %Output
     
-    %ver como e onde se calcula P2
+    %ver onde se deve calcular P2
 end

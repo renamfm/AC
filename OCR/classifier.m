@@ -54,16 +54,22 @@
     %view(net)
 
     %---------------- Select activation function----------
-    %net.layers{1}.transferFcn = 'hardlim' %binary
+    net.layers{1}.transferFcn = 'hardlim' %binary
     %net.layers{1}.transferFcn = 'purelin'; %linear
     %net.layers{1}.transferFcn = 'logsig' %sigmoidal
+    
+    %Caso haja mais uma layer
+    %net.layers{2}.transferFcn = 'hardlim' %binary
+    %net.layers{2}.transferFcn = 'purelin'; %linear
+    %net.layers{2}.transferFcn = 'logsig' %sigmoidal
+    
 
     %---------------- Incremental training ----------
     %Weight and bias learning rules with incremental updates after each presentation of an input
     
     %Training function
     %Incremental training 
-    %net.trainFcn = 'trainc'; %levenberg?marquardt %inputs are presented in cyclic order
+    net.trainFcn = 'trainc'; %levenberg?marquardt %inputs are presented in cyclic order
     %net.trainFcn = 'trainr'; %inputs are presented in random order
     
     %Learning algorithms to use when training methods are incremental
@@ -86,7 +92,7 @@
     %net.trainFcn = 'traingd'; %gradient descent
     %net.trainFcn = 'traingda'; %gradient descent with adaptive leaning rate
     %net.trainFcn = 'traingdm'; %gradient with moment
-    net.trainFcn = 'trainlm'; %Levenberg-Marquardt
+    %net.trainFcn = 'trainlm'; %Levenberg-Marquardt
     %net.trainFcn = 'trainscg'; %scaled conjugate gradient 
 
     
@@ -127,10 +133,10 @@
     b = net.b{1,1};
 
     %final weight and bias with 2 layers
-    %
-    %FALTA ISTO (se bem que não se utiliza em nenhum lado)
-    %
-    %
+    %W1 = net.IW{1,1};
+    %b1 = net.b{1,1};
+    %W2 = LW{2,1};
+    %b2 = net.b{2,1};
     
     %validation
     load('Data/P6_Sergio.mat'); %numeros que nao foram usados para treinar
