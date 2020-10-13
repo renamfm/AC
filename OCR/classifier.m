@@ -92,10 +92,8 @@
     %net.trainFcn = 'traingd'; %gradient descent
     %net.trainFcn = 'traingda'; %gradient descent with adaptive leaning rate
     %net.trainFcn = 'traingdm'; %gradient with moment
-    %net.trainFcn = 'trainlm'; %Levenberg-Marquardt
+    net.trainFcn = 'trainlm'; %Levenberg-Marquardt
     %net.trainFcn = 'trainscg'; %scaled conjugate gradient 
-
-    
     
     %Initialization of the network parameters
     W = rand(10,256); %generates matrix 10x256 random in (0 1)
@@ -126,7 +124,7 @@
     
     %***** ATENTION: Change the NN name before saving to avoid override ***
     net = train(net,P,T); 
-    save('Data/net.mat', 'net')
+    save('Data/purelin_trainlm.mat', 'net')
 
     %final weights and bias after training phase
     W = net.IW{1,1};
