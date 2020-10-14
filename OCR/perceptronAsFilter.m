@@ -17,7 +17,7 @@ function pFilter = perceptronAsFilter()
     save('Data/pFilter.mat', 'pFilter');
 
     %%========TEST
-    load('Data/P6_Sergio.mat'); %Numbers that were not used for training
-    test = pFilter(P6_Sergio(:,1)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
-    showim(test)
+    %load('Data/P6_Sergio.mat'); %Numbers that were not used for training
+    %test = pFilter(P6_Sergio(:,1)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
+    %showim(test)
 end

@@ -3,7 +3,7 @@
     %Dataset
     load('Data/numbers.mat');
     P = numbers;
-    
+   
     
     %%****************** UNCOMMENT TO USE THE FILTER ******************
     %Associative memory
@@ -11,10 +11,10 @@
     %Wp = associativeMemory();
     %P = Wp * P;
     
-    %Perceptron as Filte
+    %Perceptron as Filter
     %... Make sure pFilter is trained...
-    %load('Data/pFilter.mat', 'pFilter');
-    %P = pFilter(P);
+    load('Data/pFilter.mat', 'pFilter');
+    P = pFilter(P);
     %showim(P(:,15));
     
     %%*****************************************************************
@@ -54,9 +54,9 @@
     %view(net)
 
     %---------------- Select activation function----------
-    net.layers{1}.transferFcn = 'hardlim'; %binary
+    %net.layers{1}.transferFcn = 'hardlim'; %binary
     %net.layers{1}.transferFcn = 'purelin'; %linear
-    %net.layers{1}.transferFcn = 'logsig' %sigmoidal
+    net.layers{1}.transferFcn = 'logsig' %sigmoidal
     
     %Caso haja mais uma layer
     %net.layers{2}.transferFcn = 'hardlim' %binary
@@ -69,17 +69,17 @@
     
     %Training function
     %Incremental training 
-    net.trainFcn = 'trainc'; %levenberg?marquardt %inputs are presented in cyclic order
-    %net.trainFcn = 'trainr'; %inputs are presented in random order
+    %net.trainFcn = 'trainc'; %levenberg?marquardt %inputs are presented in cyclic order
+    net.trainFcn = 'trainr'; %inputs are presented in random order
     
     %Learning algorithms to use when training methods are incremental
     %net.adaptFcn = 'learnp'; %perceptron rule
     %net.adaptFcn = 'learnpn'; %normalized perceptron rule
     %net.adaptFcn = 'learngd'; %gradient rule
-    net.adaptFcn = 'learngdm'; %gradient rule improved with momentum
+    %net.adaptFcn = 'learngdm'; %gradient rule improved with momentum
     %net.adaptFcn = 'learnh'; %hebb rule
     %net.adaptFcn = 'learnhd'; %hebb rule with decaying weight
-    %net.adaptFcn = 'learnwh'; %Widrow-Hoff learning rule
+    net.adaptFcn = 'learnwh'; %Widrow-Hoff learning rule
     
     
     %---------------- Batch training ----------
@@ -124,7 +124,7 @@
     
     %***** ATENTION: Change the NN name before saving to avoid override ***
     net = train(net,P,T); 
-    save('Data/net.mat', 'net')
+    %save('Data/purelin_trainr_learngd.mat', 'net')
 
     %final weights and bias after training phase
     W = net.IW{1,1};
@@ -136,8 +136,15 @@
     %W2 = LW{2,1};
     %b2 = net.b{2,1};
     
-    %validation
-    load('Data/P6_Sergio.mat'); %numeros que nao foram usados para treinar
-    test = net(P6_Sergio(:,1)); %test = sim(filterB,P6_Sergio(:,2)); %seria a mesma coisa
-
+    
+    %----------------------Testing-----------------------------
+    load('Pteste.mat');
+    
+    %caso não se use filtro
+    %test = net(Pteste);
+    
+    %caso se use filtro
+    PtesteFiltered = pFilter(Pteste);
+    test = net(PtesteFiltered);
+    test_result(test)
 %end
