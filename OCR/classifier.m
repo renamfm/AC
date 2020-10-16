@@ -12,8 +12,8 @@
     
     %Perceptron as Filter
     %... Make sure pFilter is trained...
-    %load('Data/pFilter.mat', 'pFilter');
-    %P = pFilter(P);
+    load('Data/pFilter.mat', 'pFilter');
+    P = pFilter(P);
     %showim(P(:,15));
     
     %%*****************************************************************
@@ -34,20 +34,28 @@
 %     net.inputConnect(1) = 1;
 %     net.biasConnect(1) = 1;
 %     net.outputConnect(1) = 1;
+
+    %No caso específico do Perceptron, tentámos também com Perceptron
+    net = perceptron;
+    net = configure(net,P,T);
+    net.trainFcn = 'trainc';
+    net.adaptFcn = 'learnp';
+
+    
     
     %%********** CLASSIFIER COM 2 LAYERS **********************************
     
-    %Creating the classifier
-    net = network(1,2); %network with 1 input and 1 layer   
-    net.inputs{1}.size = 256; %layer 1 input with 256 values
-    net.layers{1}.size = 15; %layer 1 with 15 neurons
-    net.layers{2}.size = 10; %layer 2 with 10 neurons (one for each class)
-
-    %connect input, bias, layers and output
-    net.inputConnect = [1; 0];
-    net.biasConnect = [1 ; 1];
-    net.layerConnect = [0 0 ; 1 0];
-    net.outputConnect = [0 1];
+%     %Creating the classifier
+%     net = network(1,2); %network with 1 input and 1 layer   
+%     net.inputs{1}.size = 256; %layer 1 input with 256 values
+%     net.layers{1}.size = 15; %layer 1 with 15 neurons
+%     net.layers{2}.size = 10; %layer 2 with 10 neurons (one for each class)
+% 
+%     %connect input, bias, layers and output
+%     net.inputConnect = [1; 0];
+%     net.biasConnect = [1 ; 1];
+%     net.layerConnect = [0 0 ; 1 0];
+%     net.outputConnect = [0 1];
     
 
     %view(net)
@@ -55,11 +63,11 @@
     %---------------- Select activation function----------
     %net.layers{1}.transferFcn = 'hardlim'; %binary
     %net.layers{1}.transferFcn = 'purelin'; %linear
-    net.layers{1}.transferFcn = 'logsig'; %sigmoidal
+    %net.layers{1}.transferFcn = 'logsig'; %sigmoidal
     
     %Caso haja mais uma layer
     %net.layers{2}.transferFcn = 'hardlim' %binary
-    net.layers{2}.transferFcn = 'purelin'; %linear
+    %net.layers{2}.transferFcn = 'purelin'; %linear
     %net.layers{2}.transferFcn = 'logsig' %sigmoidal
     
 
@@ -69,13 +77,13 @@
     %Training function
     %Incremental training 
     %net.trainFcn = 'trainc'; %levenberg?marquardt %inputs are presented in cyclic order
-    net.trainFcn = 'trainr'; %inputs are presented in random order
+    %net.trainFcn = 'trainr'; %inputs are presented in random order
     
     %Learning algorithms to use when training methods are incremental
     %net.adaptFcn = 'learnp'; %perceptron rule
     %net.adaptFcn = 'learnpn'; %normalized perceptron rule
     %net.adaptFcn = 'learngd'; %gradient rule
-    net.adaptFcn = 'learngdm'; %gradient rule improved with momentum
+    %net.adaptFcn = 'learngdm'; %gradient rule improved with momentum
     %net.adaptFcn = 'learnh'; %hebb rule
     %net.adaptFcn = 'learnhd'; %hebb rule with decaying weight
     %net.adaptFcn = 'learnwh'; %Widrow-Hoff learning rule
@@ -101,10 +109,10 @@
     %net.b{1,1} = b;
     
     %caso haja 2 layers
-    net.IW{1,1} = rand(15,256);
-    net.b{1,1} = rand(15,1);
-    net.LW{2,1} = rand(10,15);
-    net.b{2,1} = rand(10,1);
+    %net.IW{1,1} = rand(15,256);
+    %net.b{1,1} = rand(15,1);
+    %net.LW{2,1} = rand(10,15);
+    %net.b{2,1} = rand(10,1);
 
     %training parameters
     net.performParam.lr = 0.5; % learning rate
@@ -130,25 +138,26 @@
     %b = net.b{1,1};
 
     %final weight and bias with 2 layers
-    W1 = net.IW{1,1};
-    b1 = net.b{1,1};
-    W2 = net.IW{2,1};
-    b2 = net.b{2,1};
+    %W1 = net.IW{1,1};
+    %b1 = net.b{1,1};
+    %W2 = net.IW{2,1};
+    %b2 = net.b{2,1};
     
     
     %----------------------Testing-----------------------------
     load('Pteste.mat');
     
     %caso não se use filtro
-    test = net(Pteste);
+    %test = net(Pteste);
     
     %associative memory 
     %Wp = associativeMemory();
     %Pteste = Wp * Pteste;
     %test = net(Pteste);
     
-    %caso se use filtro
-    %testeFiltered = pFilter(Pteste);
-    %test = net(testeFiltered);
+    %caso se use filtro perceptron
+    testeFiltered = pFilter(Pteste);
+    test = net(testeFiltered);
+    
     test_result(test)
 %end
