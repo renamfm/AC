@@ -69,13 +69,13 @@
     %Training function
     %Incremental training 
     %net.trainFcn = 'trainc'; %levenberg?marquardt %inputs are presented in cyclic order
-    %net.trainFcn = 'trainr'; %inputs are presented in random order
+    net.trainFcn = 'trainr'; %inputs are presented in random order
     
     %Learning algorithms to use when training methods are incremental
     %net.adaptFcn = 'learnp'; %perceptron rule
     %net.adaptFcn = 'learnpn'; %normalized perceptron rule
     %net.adaptFcn = 'learngd'; %gradient rule
-    %net.adaptFcn = 'learngdm'; %gradient rule improved with momentum
+    net.adaptFcn = 'learngdm'; %gradient rule improved with momentum
     %net.adaptFcn = 'learnh'; %hebb rule
     %net.adaptFcn = 'learnhd'; %hebb rule with decaying weight
     %net.adaptFcn = 'learnwh'; %Widrow-Hoff learning rule
@@ -85,13 +85,13 @@
     %Weight and biases updated athe the end  of an entire pass through the input data
     
     %Training function
-    net.trainFcn = 'trainb';
+    %net.trainFcn = 'trainb';
     
     %Learning algorithms are in batch implementation
     %net.trainFcn = 'traingd'; %gradient descent
     %net.trainFcn = 'traingda'; %gradient descent with adaptive leaning rate
     %net.trainFcn = 'traingdm'; %gradient with moment
-    net.trainFcn = 'trainlm'; %Levenberg-Marquardt
+    %net.trainFcn = 'trainlm'; %Levenberg-Marquardt
     %net.trainFcn = 'trainscg'; %scaled conjugate gradient 
     
     %Initialization of the network parameters
@@ -140,12 +140,12 @@
     load('Pteste.mat');
     
     %caso não se use filtro
-    %test = net(Pteste);
+    test = net(Pteste);
     
     %associative memory 
     %Wp = associativeMemory();
     %Pteste = Wp * Pteste;
-    test = net(Pteste);
+    %test = net(Pteste);
     
     %caso se use filtro
     %testeFiltered = pFilter(Pteste);
