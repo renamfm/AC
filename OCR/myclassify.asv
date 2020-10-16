@@ -19,10 +19,10 @@ function Y = myclassify(data,filled_inx)
             load('Net/assocPurelinTrainbTrainlm.mat', 'net');
         case 6
             disp("Option 6: assoc. mem. + classifier, purelin, trainb, trainscg");
-            load('Net/assocPurelinTrainbTrainscg.mat', 'net');
+            net load('Net/assocPurelinTrainbTrainscg.mat');
         case 7
             disp("Option 7: assoc. mem. + classifier, purelin, trainb, traingda");
-            load('Net/assocPurelinTrainbTraingda.mat', 'net');
+            net = load('Net/assocPurelinTrainbTraingda.mat');
         case 8
             disp("Option 8: assoc. mem. + classifier, perceptron");
             net = load('Net/assocPerceptron.mat');
@@ -31,7 +31,7 @@ function Y = myclassify(data,filled_inx)
     end
     
     %se for preciso usar assoc. memory
-    if(option==5 || option==6 || option==7 || option==8)
+    if(option(1)==5 || option(1)==6 || option(1)==7 || option(1)==8)
         Wp = associativeMemory();
         data = Wp * data;
     end
