@@ -1,20 +1,20 @@
 function [target] = createTarget(data)
     [R,~] = size(data.Trg);
-    target = [];
+    target = zeros(3,R);
     
     %Classification:
-     interIctal = [1 0 0]';
-     preIctal = [0 1 0]';
-     ictal = [0 0 1]';
+     interIctal = [1 0 0];
+     preIctal = [0 1 0];
+     ictal = [0 0 1];
      
      for i=1:R
         switch data.Trg(i)
             case 1
-                target = [target interIctal];
+                target(:,i) = interIctal;
             case 2
-                target = [target preIctal];
+                target(:,i) = preIctal;
             case 3
-                target = [target ictal];
+                target(:,i) = ictal;
         end
      end     
 end
