@@ -13,3 +13,5 @@ data1 = change_data(data1);
 data2 = change_data(data2);
 data3 = change_data(data3);
 data4 = change_data(data4);
+
+target1 = createTarget(data1);

@@ -35,6 +35,5 @@ function data = change_data(data)
             data.Trg(i) = 1;
         end
     end
-
 end
 
