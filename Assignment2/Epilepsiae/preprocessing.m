@@ -14,4 +14,5 @@ data2 = change_data(data2);
 data3 = change_data(data3);
 %data4 = change_data(data4);
 
+data2 = balanceData(data2);
 target2 = createTarget(data2);
