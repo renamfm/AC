@@ -5,7 +5,7 @@ function [target] = createTarget(data)
     %Classification:
      interIctal = [1 0 0]';
      preIctal = [0 1 0]';
-     ictal = [0 0 1];
+     ictal = [0 0 1]';
      
      for i=1:R
         switch data.Trg(i)
