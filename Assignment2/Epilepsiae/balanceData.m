@@ -13,7 +13,7 @@ function [dataB] = balanceData(data)
     %Get the random indices chosen to balance the data
     interIctalChosen = interIctalIndex(1,interIctalSelected);
     
-    %Sort all data randomly
+    %Sort all data by index
     sortedData = sort([ictalIndex preIctalIndex interIctalChosen]);
     
     %Now get the selected data
