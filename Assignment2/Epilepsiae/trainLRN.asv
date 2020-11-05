@@ -23,12 +23,12 @@
     
     %Parametros de Treino
     net.trainParam.epochs = 1000;
-    net.trainParam.min_grad = 1e-9;
+    net.trainParam.min_grad = 10e-9;
     net.trainParam.lr = 0.01;
     net.performFcn = 'msereg';
     net.trainParam.max_fail = 100;
     net.trainParam.goal = 1e-9;
-    %net.performParam.regularization = 0.4;
+    %net.performParam.regularization = 0.9;
     
     %Divisão do Set Balanceado para treino e validação
     net.divideFcn = 'divideblock';
@@ -46,6 +46,6 @@
     %view(net)
     network = train(net,dataB.FeatVectSel,target,[],[],EW);
     y = network(dataB.FeatVectSel);
-    perf = perform(network,y,target,EW); 
+    perf = perform(network,,target); 
 %end
 
