@@ -10,8 +10,8 @@ data3 = load('/home/sergio/Dropbox/AC/PL2/Data/63502.mat');
 
 %To transpose FeatVectSel and change classification in Trg
 %data1 = change_data(data1);
-data2 = change_data(data2);
-data3 = change_data(data3);
+data = change_data(data2);
+data2 = change_data(data3);
 %data4 = change_data(data4);
 
 %data2 = balanceData(data2);
