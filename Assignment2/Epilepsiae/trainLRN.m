@@ -45,10 +45,11 @@ function [network,output] = trainLRN(data,trainF, neuronsN, hLayersN, transferF,
     EW = all(target==[1 0 0]')*(C/interIctalL) + all(target==[0 1 0]')*(C/preIctalL) + all(target==[0 0 1]')*(C/ictalL);    
     
     %view(net)
+    %FIX: Use Parallel Computing
     if(errorsOn == 1)
         network = train(net,dataB.FeatVectSel,target,[],[],EW);
     else
-        network = train(net,dataB.FeatVectSel);
+        network = train(net,dataB.FeatVectSel,target);
     end
     
     output = network(dataB.FeatVectSel);
