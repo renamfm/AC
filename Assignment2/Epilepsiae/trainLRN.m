@@ -1,4 +1,4 @@
-function [network,output] = trainLRN(data,trainF, neuronsN, hLayersN, transferF)
+function [network,output] = trainLRN(data,trainF, neuronsN, hLayersN, transferF,errorsOn)
     
     %Get balanced data
     dataB = balanceData(data);
@@ -45,7 +45,12 @@ function [network,output] = trainLRN(data,trainF, neuronsN, hLayersN, transferF)
     EW = all(target==[1 0 0]')*(C/interIctalL) + all(target==[0 1 0]')*(C/preIctalL) + all(target==[0 0 1]')*(C/ictalL);    
     
     %view(net)
-    network = train(net,dataB.FeatVectSel,target,[],[],EW);
+    if(errorsOn == 1)
+        network = train(net,dataB.FeatVectSel,target,[],[],EW);
+    else
+        network = train(net,dataB.FeatVectSel);
+    end
+    
     output = network(dataB.FeatVectSel);
     %perf = perform(network,y,target,EW); 
 end
