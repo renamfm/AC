@@ -11,8 +11,14 @@ data2 = load('C:\EpilepsaeData\112502.mat');
 
 %To transpose FeatVectSel and change classification in Trg
 data1 = changeData(data1);
-data2 = changeData(data2);
+data2 = changeData(data2); 
 
 data1 = balanceData(data1);
 target1 = createTarget(data1);
-stackAutoencoder(data1.FeatVectSel, target1, 10, 6);
+features = simpleAutoencoder(data1.FeatVectSel, 10);
+%features = stackAutoencoder(data1.FeatVectSel, 10, 6);
+
+%data2 = balanceData(data2);
+%target2 = createTarget(data2);
+%features = simpleAutoencoder(data2.FeatVectSel, 10);
+%features = stackAutoencoder(data2.FeatVectSel, 10, 6);
