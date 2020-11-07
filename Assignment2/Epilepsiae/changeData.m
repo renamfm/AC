@@ -1,4 +1,4 @@
-function data = change_data(data)
+function data = changeData(data)
     data.FeatVectSel = data.FeatVectSel';
 
     %First, change ictal points from 1 to 3
