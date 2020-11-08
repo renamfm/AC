@@ -18,7 +18,7 @@ function [network] = trainLRN(dataB,trainF, neuronsN, hLayersN, transferF,errors
     %Train parameters
     net.trainParam.lr = 0.01;
     net.performFcn = 'msereg';
-    %net.performParam.regularization = 0.4;
+    %net.performParam.regularization = 0.9;
 
     %Stopping Criteria
     net.trainParam.min_grad = 1e-9;
