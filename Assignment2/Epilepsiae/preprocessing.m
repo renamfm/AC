@@ -9,6 +9,11 @@ data2 = load('C:\EpilepsaeData\112502.mat');
 %   2 - Pre-ictal:   [0 1 0]
 %   3 - Ictal:       [0 0 1]
 
+%dividir o set em train e validacao, 85% <-> 15%| 30-20%
+%so o training e que tem o balanceamento
+%CNN podemos fazer mais ictal com overlap
+%Mais usada é a ReLu mas podemos usar outras
+
 %To transpose FeatVectSel and change classification in Trg
 data1 = changeData(data1);
 data2 = changeData(data2); 
