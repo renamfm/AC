@@ -1,4 +1,4 @@
-function net = feedforward(X, T, hiddenSizes, trainFcn)
+function net = trainFeedForwardN(X, T, hiddenSizes, trainFcn)
 
     %generate the feedforward network
     net = feedforwardnet(hiddenSizes, trainFcn);
