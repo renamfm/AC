@@ -32,15 +32,15 @@ function [SE_D,SE_P,SP_D,SP_P] = getNNPerformPbP(type, T, R)
     for i=1:C
        TP(i) = cm(i,i);   %Diagonal values -> Classified correctly
        FP(i) = -cm(i,i) + sum(cm(:,i)); %FP -> All from line except the digonal
-       FN(i)= -cm(i,i) + sum(cm(i,:)); %FP -> All from colonm except the digonal
-       TN(i) = -TP(i)-FP(i)-FN(i)+sum(cm(:));
+       FN(i)= -cm(i,i) + sum(cm(i,:));  %FP -> All from colonm except the digonal
+       TN(i) = -TP(i)-FP(i)-FN(i)+sum(cm(:));   %Everything except positives and FN
     end
     
     %Prediction Index 2 -> PreIctal
     %Detection Index 3 -> Ictal
-    SE_D = TP(3)/(TP(3)+FN(3));
-    SE_P = TP(2)/(TP(2)+FN(2));
-    SP_D = TN(3)/(TN(3)+FP(3));    
-    SP_P = TN(2)/(TN(2)+FP(2));
+    SE_D = (TP(3)/(TP(3)+FN(3)))*100;
+    SE_P = (TP(2)/(TP(2)+FN(2)))*100;
+    SP_D = (TN(3)/(TN(3)+FP(3)))*100;    
+    SP_P = (TN(2)/(TN(2)+FP(2)))*100;
 
 end
