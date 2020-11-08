@@ -1,7 +1,8 @@
-%data1 = load('/home/sergio/Dropbox/AC/PL2/Data/44202.mat');
-data2 = load('/home/sergio/Dropbox/AC/PL2/Data/54802.mat');
-data3 = load('/home/sergio/Dropbox/AC/PL2/Data/63502.mat');
-%data4 = load('/home/sergio/Dropbox/AC/PL2/Data/112502.mat');
+%data1 = load('/home/sergio/Dropbox/AC/PL2/Data/54802.mat');
+%data2 = load('/home/sergio/Dropbox/AC/PL2/Data/112502.mat');
+
+data1 = load('C:\EpilepsaeData\54802.mat');
+data2 = load('C:\EpilepsaeData\112502.mat');
 
 %Classification:
 %   1 - Inter-ictal: [1 0 0]
@@ -14,10 +15,15 @@ data3 = load('/home/sergio/Dropbox/AC/PL2/Data/63502.mat');
 %Mais usada é a ReLu mas podemos usar outras
 
 %To transpose FeatVectSel and change classification in Trg
-%data1 = change_data(data1);
-data = change_data(data2);
-data2 = change_data(data3);
-%data4 = change_data(data4);
+data1 = changeData(data1);
+data2 = changeData(data2); 
+
+data1 = balanceData(data1);
+target1 = createTarget(data1);
+features = simpleAutoencoder(data1.FeatVectSel, 10);
+%features = stackAutoencoder(data1.FeatVectSel, 10, 6);
 
 %data2 = balanceData(data2);
 %target2 = createTarget(data2);
+%features = simpleAutoencoder(data2.FeatVectSel, 10);
+%features = stackAutoencoder(data2.FeatVectSel, 10, 6);
