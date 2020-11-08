@@ -19,7 +19,7 @@
     dataB = balanceData(data);
     
     %Train the Network
-    [network] = trainLRN(dataB,'trainlm',10,1,'purelin',1);
+    [network] = trainLRN(dataB,'trainlm',10,1,'purelin',0);
     
     %Teste the network
     output = network(testing.FeatVectSel);
