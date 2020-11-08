@@ -16,7 +16,7 @@
     %dataB = balanceData(training);
     
     
-    dataB = balanceData(training);
+    dataB = balanceData(data);
     
     %Train the Network
     [network] = trainLRN(dataB,'trainlm',10,1,'purelin',1);

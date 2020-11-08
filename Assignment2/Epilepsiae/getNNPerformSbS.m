@@ -1,26 +1,47 @@
-%This is a function to be used for all the networks
-%The function calculates de sensivity and specificity for detection and
-%prediction
-%TODO: Ve se esta tudo bem!
-function [SE_D,SE_P,SP_D,SP_P] = getNNPerformPbP(type, T, R)
+function [SE_D,SE_P,SP_D,SP_P] = getNNPerformSbS(type, T, R)
     %If the network is a feedfoward of recurrent neural network
     if isequal(type, 'Shallow')
         [~,target] = max(T);
         [~,result] = max(R);
     end
     
+    [~,C] = size(result);       %Get result size
+    computedR = zeros(C,1);     %Make a new array to store the results
+    for i=1:C
+        %If it has 10 numbers ahead
+        if(i+10 <= C)
+            %Sees the dominant number type
+            interN = length(find(result(i:i+9)==1));
+            preN = length(find(result(i:i+9)==2));
+            ictalN = length(find(result(i:i+9)==3));
+            [max_class,index] = max([interN preN ictalN]);
+                
+            %If it has 5 or mores it detects a class
+            if max_class >= 5
+            	computedR(i)=index;
+            else
+                computedR(i)=result(i);
+            end
+           
+            else
+            %Everything stays the same    
+            computedR(i)=result(i);
+        end
+    end
+    
+    %%Now lets process the results as proposed in the statement
+    %A seizure is only predicted if one finds 10 consective points as
+    %preictal and 10 consecutive points as ictal
+    
     %How to know the predicted values performance?
     %->Use confionmat
     %C = confusionmat(group,grouphat) returns the confusion matrix C 
     %determined by the known and predicted groups in group and grouphat, respectively.
-    cm = confusionmat(target,result);
+    cm = confusionmat(target,computedR);
     confusionchart(cm);
     %Tipo os indices diagonais sao os que foram classificados corretamente
     %para cada classe os outros foram classificados como de outro tipo
     %Cada coluna representa uma classe
-    
-    %Create new matrix's in order to store the true positive and false
-    %positives
     
     [~,C] = size(cm);
     TP = zeros(1,C);    %True positives
