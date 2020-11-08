@@ -1,8 +1,8 @@
-%data1 = load('/home/sergio/Dropbox/AC/PL2/Data/54802.mat');
-%data2 = load('/home/sergio/Dropbox/AC/PL2/Data/112502.mat');
+data1 = load('/home/sergio/Dropbox/AC/PL2/Data/54802.mat');
+data2 = load('/home/sergio/Dropbox/AC/PL2/Data/112502.mat');
 
-data1 = load('C:\EpilepsaeData\54802.mat');
-data2 = load('C:\EpilepsaeData\112502.mat');
+%data1 = load('C:\EpilepsaeData\54802.mat');
+%data2 = load('C:\EpilepsaeData\112502.mat');
 
 %Classification:
 %   1 - Inter-ictal: [1 0 0]
@@ -27,3 +27,4 @@ features = simpleAutoencoder(data1.FeatVectSel, 10);
 %target2 = createTarget(data2);
 %features = simpleAutoencoder(data2.FeatVectSel, 10);
 %features = stackAutoencoder(data2.FeatVectSel, 10, 6);
+
