@@ -1,10 +1,6 @@
-function [network,output] = trainLRN(data,trainF, neuronsN, hLayersN, transferF,errorsOn)
+function [network] = trainLRN(dataB,trainF, neuronsN, hLayersN, transferF,errorsOn)
     
-    %Get balanced data
-    dataB = balanceData(data);
     target = createTarget(dataB);
-    
-    %***** Usar aqui autoenconder *****
 
     %----------->Define NN architecture
     %layrecnet arguments: [layerDelays,hiddenSizes,trainFcn]
@@ -32,9 +28,8 @@ function [network,output] = trainLRN(data,trainF, neuronsN, hLayersN, transferF,
     
     %Divisão do Set Balanceado para treino e validação
     net.divideFcn = 'divideblock';
-    net.divideParam.trainRatio = 70/100;
-    net.divideParam.valRatio = 15/100;
-    net.divideParam.testRatio = 15/100;
+    net.divideParam.trainRatio = 0.85;
+    net.divideParam.valRatio = 0.15;
     
     [~,C] = size(target);
     interIctalL = nnz(all(target==[1 0 0]'));
@@ -51,8 +46,4 @@ function [network,output] = trainLRN(data,trainF, neuronsN, hLayersN, transferF,
     else
         network = train(net,dataB.FeatVectSel,target);
     end
-    
-    output = network(dataB.FeatVectSel);
-    %perf = perform(network,y,target,EW); 
 end
-
