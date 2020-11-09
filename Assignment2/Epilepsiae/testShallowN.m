@@ -1,4 +1,4 @@
-function [SE_Dp,SE_Pp,SP_Dp,SP_Pp,SE_Dss,SE_Ps,SP_Ds,SP_Ps] = testShallowN(type)
+%function [SE_Dp,SE_Pp,SP_Dp,SP_Pp,SE_Dss,SE_Ps,SP_Ds,SP_Ps] = testShallowN(type)
     %Get data
     data = load('/home/sergio/Dropbox/AC/PL2/Data/54802.mat');
     data = changeData(data);
@@ -26,11 +26,11 @@ function [SE_Dp,SE_Pp,SP_Dp,SP_Pp,SE_Dss,SE_Ps,SP_Ds,SP_Ps] = testShallowN(type)
     %Teste the network
     output = network(testing.FeatVectSel);
     targetT = createTarget(testing);
-    perf = perform(network,y,target,EW);
-    sprintf("Perform: %s",perf);
+    %perf = perform(network,y,target,EW);
+    %sprintf("Perform: %s",perf);
     
     %Calculate table values
     [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Shallow', targetT, output);
     [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Shallow', T, R);
     
-end
+%end
