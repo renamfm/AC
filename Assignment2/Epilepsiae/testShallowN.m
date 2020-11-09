@@ -34,5 +34,5 @@ function [SE_Dp,SE_Pp,SP_Dp,SP_Pp,SE_Dss,SE_Ps,SP_Ds,SP_Ps] = testShallowN(type)
     [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Shallow', targetT, output);
     %Seizure by seizure
     [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Shallow', targetT, output);
-    
 end
+  
