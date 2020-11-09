@@ -5,7 +5,7 @@ function [network] = trainCNN(data)
     
     [features,~,~,~] = size(data);
     filterSize = 5;
-    numFilter = 5;
+    numFilter = 10;
     poolSize = 2;
     poolStride = 2;
     layerStride = 2;
@@ -31,6 +31,10 @@ function [network] = trainCNN(data)
     fullyConnectedLayer(3)
     softmaxLayer
     classificationLayer];
+
+    %Three convolution layers
+    
+    %Five convolution layers
 
     %Network configuration
     config = trainingOptions('adam',...
