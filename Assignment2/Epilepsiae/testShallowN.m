@@ -17,9 +17,9 @@
     %dataB = balanceData(data);
     
     %>>>>Train the Network
-    targetT = createTarget(dataB);
+    target = createTarget(dataB);
     if type == 1
-        [network] = trainLRN(dataB,targetT,'trainlm',10,1,'purelin',0);
+        [network] = trainLRN(dataB,target,'trainlm',10,1,'purelin',0);
     else
         %[network] = trainFeedForwardN(dataB,targetT,'trainlm',10,1,'purelin',1);
     end
@@ -30,6 +30,7 @@
     %sprintf("Perform: %s",perf);
     
     %>>>>Calculate table performance values
+    targetT = createTarget(testing);
     %Point by Point
     [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Shallow', targetT, output);
     %Seizure by seizure
