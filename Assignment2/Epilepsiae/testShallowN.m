@@ -1,4 +1,4 @@
-function [SE_Dp,SE_Pp,SP_Dp,SP_Pp,SE_Dss,SE_Ps,SP_Ds,SP_Ps] = testShallowN(type)
+%function [SE_Dp,SE_Pp,SP_Dp,SP_Pp,SE_Dss,SE_Ps,SP_Ds,SP_Ps] = testShallowN(type)
     %>>>>Get data
     data = load('/home/sergio/Dropbox/AC/PL2/Data/54802.mat');
     data = changeData(data);
@@ -17,15 +17,15 @@ function [SE_Dp,SE_Pp,SP_Dp,SP_Pp,SE_Dss,SE_Ps,SP_Ds,SP_Ps] = testShallowN(type)
     %dataB = balanceData(data);
     
     %>>>>Train the Network
+    targetT = createTarget(dataB);
     if type == 1
-        [network] = trainLRN(dataB,'trainlm',10,1,'purelin',0);
+        [network] = trainLRN(dataB,targetT,'trainlm',10,1,'purelin',0);
     else
-        [network] = trainFeedForwardN(dataB,'trainlm',10,1,'purelin',1);
+        %[network] = trainFeedForwardN(dataB,targetT,'trainlm',10,1,'purelin',1);
     end
         
     %>>>>Teste the network
     output = network(testing.FeatVectSel);
-    targetT = createTarget(testing);
     %perf = perform(network,y,target,EW);
     %sprintf("Perform: %s",perf);
     
@@ -34,5 +34,5 @@ function [SE_Dp,SE_Pp,SP_Dp,SP_Pp,SE_Dss,SE_Ps,SP_Ds,SP_Ps] = testShallowN(type)
     [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Shallow', targetT, output);
     %Seizure by seizure
     [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Shallow', targetT, output);
-end
+%end
   

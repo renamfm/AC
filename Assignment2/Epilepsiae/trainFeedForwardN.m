@@ -1,7 +1,5 @@
-function  [network] = trainFeedForwardN(dataB,trainF, neuronsN, hLayersN, transferF,errorsOn)
+function  [network] = trainFeedForwardN(dataB,target,trainF, neuronsN, hLayersN, transferF,errorsOn)
     
-    target = createTarget(dataB);
-         
     hiddenLayers = zeros(1, hLayersN);
     hiddenLayers(1,:) = neuronsN;
     %Create feedfoward nn

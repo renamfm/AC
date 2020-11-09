@@ -1,6 +1,4 @@
-function [network] = trainLRN(dataB,trainF, neuronsN, hLayersN, transferF,errorsOn)
-    
-    target = createTarget(dataB);
+function [network] = trainLRN(dataB,target,trainF, neuronsN, hLayersN, transferF,errorsOn)
 
     %----------->Define NN architecture
     %layrecnet arguments: [layerDelays,hiddenSizes,trainFcn]
