@@ -63,6 +63,5 @@ function [data4D] = preProcessingCNN(Data)
     %Get 4D data as refered in the statement
     data4D.FeatVectSel = cat(4, squares{:});
     data4D.Trg = cat(1, repmat(2,preIctalN,1), repmat(3,ictalN,1), ones(interN,1));
-    data4D.Trg = categorical(data4D.Trg); %Categorical e um datatype, supostamente para usar a funcao
-    %trainnetwork o target tem de ser deste tipo
-end
+    data4D.Trg = categorical(data4D.Trg); %In order to use the funcion trainNetwork the
+    %target data must be if clategorical type
