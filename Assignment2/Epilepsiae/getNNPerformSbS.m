@@ -52,8 +52,8 @@ function [SE_D,SE_P,SP_D,SP_P] = getNNPerformSbS(type, T, R)
     %Go throught matrix columns to calculate de positives and negatives
     for i=1:C
        TP(i) = cm(i,i);   %Diagonal values -> Classified correctly
-       FP(i) = -cm(i,i) + sum(cm(:,i)); %FP -> All from line except the digonal
-       FN(i)= -cm(i,i) + sum(cm(i,:));  %FP -> All from colonm except the digonal
+       FP(i) = -TP(i) + sum(cm(:,i)); %FP -> All from line except the digonal
+       FN(i)= -TP(i) + sum(cm(i,:));  %FP -> All from colonm except the digonal
        TN(i) = -TP(i)-FP(i)-FN(i)+sum(cm(:));   %Everything except positives and FN
     end
     

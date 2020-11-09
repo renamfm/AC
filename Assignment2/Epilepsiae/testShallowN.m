@@ -1,4 +1,4 @@
-%function [SE_Dp,SE_Pp,SP_Dp,SP_Pp,SE_Dss,SE_Ps,SP_Ds,SP_Ps] = testShallowN(type)
+function [SE_Dp,SE_Pp,SP_Dp,SP_Pp,SE_Dss,SE_Ps,SP_Ds,SP_Ps] = testShallowN(type)
     %>>>>Get data
     data = load('/home/sergio/Dropbox/AC/PL2/Data/54802.mat');
     data = changeData(data);
@@ -30,7 +30,9 @@
     %sprintf("Perform: %s",perf);
     
     %>>>>Calculate table performance values
+    %Point by Point
     [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Shallow', targetT, output);
+    %Seizure by seizure
     [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Shallow', targetT, output);
     
-%end
+end

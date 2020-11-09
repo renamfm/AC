@@ -20,8 +20,8 @@ data2 = changeData(data2);
 
 data1 = balanceData(data1);
 target1 = createTarget(data1);
-features = simpleAutoencoder(data1.FeatVectSel, 10);
-%features = stackAutoencoder(data1.FeatVectSel, 10, 6);
+%features = simpleAutoencoder(data1.FeatVectSel, 10);
+features = stackAutoencoder(data1.FeatVectSel, 10, 6);
 
 %data2 = balanceData(data2);
 %target2 = createTarget(data2);
