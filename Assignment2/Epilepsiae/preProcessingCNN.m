@@ -63,5 +63,5 @@ function [data4D] = preProcessingCNN(Data)
     
     %Get 4D data as refered in the statement
     data4D.FeatVectSel = cat(4, squares{:});
-    data4D.Trg = cat(1, ones(preIctalN,1), repmat(2,ictalN,1), repmat(3,interN,1));
+    data4D.Trg = cat(1, repmat(2,preIctalN,1), repmat(3,ictalN,1), ones(interN,1));
 end
