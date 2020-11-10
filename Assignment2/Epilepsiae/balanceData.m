@@ -4,10 +4,11 @@ function [dataB] = balanceData(data)
     preIctalIndex = find(data.Trg(:,1) == 2)';
     ictalIndex = find(data.Trg(:,1) == 3)';
 
-    %See how many preIctal and ictal extences exist
+    %See how many preIctal and ictal indexes exist
     ictalRelatedN = length(preIctalIndex) + length(ictalIndex);
     
-    %Get random indices from non ictal data
+    %Get a random indexes from non ictal data in a quantity equal to
+    %the sum of preIctal + ictal
     interIctalSelected =  randperm(length(interIctalIndex), ictalRelatedN);
     
     %Get the random indices chosen to balance the data

@@ -13,7 +13,6 @@ data2 = load('C:\EpilepsaeData\112502.mat');
 data1 = changeData(data1);
 data2 = changeData(data2);
 
-%ter uma variavel com o path para nao dar erro a fazer commit
 save('Data/data1.mat', 'data1');
 save('Data/data2.mat', 'data2');
 
@@ -26,7 +25,6 @@ save('Data/data2.mat', 'data2');
 %Balance data, if pretended
 
 %DEPOIS TER CONTA TAMBÉM SE QUEREMOS FAZER PARA DETECTION OU PREDICITON
-%alterando os error weights
 
 %dividir o set em train e validacao, 85% <-> 15%| 30-20%
 %so o training e que tem o balanceamento
