@@ -1,8 +1,11 @@
-%data1 = load('/home/sergio/Dropbox/AC/PL2/Data/54802.mat');
-%data2 = load('/home/sergio/Dropbox/AC/PL2/Data/112502.mat');
+pathRenato = 'C:\EpilepsaeData\';
+data1 = load(strcat(pathRenato, '54802.mat'));
+data2 = load(strcat(pathRenato, '112502.mat'));
 
-data1 = load('C:\EpilepsaeData\54802.mat');
-data2 = load('C:\EpilepsaeData\112502.mat');
+% pathSergio = '/home/sergio/Dropbox/AC/PL2/Data/';
+% data1 = load(strcat(pathSergio, '54802.mat'));
+% data2 = load(strcat(pathSergio, '112502.mat'));
+
 
 %Classification:
 %   1 - Inter-ictal: [1 0 0]
@@ -14,13 +17,16 @@ data1 = changeData(data1);
 data2 = changeData(data2);
 
 %ter uma variavel com o path para nao dar erro a fazer commit
-save('Data/data1.mat', 'data1');
-save('Data/data2.mat', 'data2');
+save(strcat(pathRenato, 'data1.mat'), 'data1');
+save(strcat(pathRenato, 'data2.mat'), 'data2');
+% save(strcat(pathSergio, 'data1.mat'), 'data1');
+% save(strcat(pathSergio, 'data2.mat'), 'data2');
 
 
-%Divide dataset
-%Train + validation (75%) -> train (85%), validation (25%)
-%Test (25%)
+%Divide dataset into training, test and validation sets,
+%considering how many seizures are included in each set
+[ttIndex, vIndex] = datasetDivision(data1)
+
 %ALTERAR PARA TER EM CONTA QUANTAS SEIZURES FICAM EM CADA SET
 
 %Balance data, if pretended

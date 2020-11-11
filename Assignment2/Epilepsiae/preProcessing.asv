@@ -1,8 +1,11 @@
-%data1 = load('/home/sergio/Dropbox/AC/PL2/Data/54802.mat');
-%data2 = load('/home/sergio/Dropbox/AC/PL2/Data/112502.mat');
+pathRenato = 'C:\EpilepsaeData\';
+data1 = load(strcat(pathRenato, '54802.mat'));
+data2 = load(strcat(pathRenato, '112502.mat'));
 
-data1 = load('C:\EpilepsaeData\54802.mat');
-data2 = load('C:\EpilepsaeData\112502.mat');
+% pathSergio = '/home/sergio/Dropbox/AC/PL2/Data/';
+% data1 = load(strcat(pathSergio, '54802.mat'));
+% data2 = load(strcat(pathSergio, '112502.mat'));
+
 
 %Classification:
 %   1 - Inter-ictal: [1 0 0]
@@ -13,18 +16,20 @@ data2 = load('C:\EpilepsaeData\112502.mat');
 data1 = changeData(data1);
 data2 = changeData(data2);
 
-save('Data/data1.mat', 'data1');
-save('Data/data2.mat', 'data2');
+%ter uma variavel com o path para nao dar erro a fazer commit
+save(strcat(pathRenato, 'data1.mat'), 'data1');
+save(strcat(pathRenato, 'data2.mat'), 'data2');
+% save(strcat(pathSergio, 'data1.mat'), 'data1');
+% save(strcat(pathSergio, 'data2.mat'), 'data2');
 
 
-%Divide dataset
-%Train + validation (75%) -> train (85%), validation (25%)
-%Test (25%)
+%Divide dataset, considering how many se
 %ALTERAR PARA TER EM CONTA QUANTAS SEIZURES FICAM EM CADA SET
 
 %Balance data, if pretended
 
 %DEPOIS TER CONTA TAMBÉM SE QUEREMOS FAZER PARA DETECTION OU PREDICITON
+%alterando os error weights
 
 %dividir o set em train e validacao, 85% <-> 15%| 30-20%
 %so o training e que tem o balanceamento

@@ -1,4 +1,5 @@
-function [ttIndex, vIndex] = datasetDivision(data)
+%function [trIndex, vIndex, ttIndex] = datasetDivision(data)
+function endOfSeizures = datasetDivision(data)
     endOfSeizures = [];
     
     %search the points that belong to ictal phase
@@ -19,5 +20,17 @@ function [ttIndex, vIndex] = datasetDivision(data)
     ttIndex = floor(size(endOfSeizures, 1) * 0.8);
     
     %Divide training: training (0.85) validation (0.15)
-    vIndex = floor(ttIndex* 0.85);
+    vIndex = floor(* 0.85);
+    
+    
+    
+%     [R,~] = size(data.Trg);
+%     
+%     trIndex = 1;
+%     %Divide the dataset: training (0.7) and testing (0.3)
+%     div = floor(R * 0.8);
+%     ttIndex = div+1;
+%     
+%     %Divide training: training (0.85) validation (0.15)
+%     vIndex = floor(div* 0.85);
 end
