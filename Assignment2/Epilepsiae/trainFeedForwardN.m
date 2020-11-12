@@ -21,7 +21,7 @@ function  [network] = trainFeedForwardN(dataB,target,trainF, neuronsN, hLayersN,
     net.trainParam.goal = 1e-9;
     net.trainParam.epochs = 1000;
     
-    %Divisão do Set Balanceado para treino e validação
+    %Dataset division
     net.divideFcn = 'divideblock';
     net.divideParam.trainRatio = 0.85;
     net.divideParam.valRatio = 0.15;
@@ -37,9 +37,9 @@ function  [network] = trainFeedForwardN(dataB,target,trainF, neuronsN, hLayersN,
     %view(net)
     %FIX: Use Parallel Computing
     if(errorsOn == 1)
-        network = train(net,dataB.FeatVectSel,target,[],[],EW);
+        network = feedforwardnet(net,dataB.FeatVectSel,target,[],[],EW);
     else
-        network = train(net,dataB.FeatVectSel,target);
+        network = feedforwardnet(net,dataB.FeatVectSel,target);
     end
     view(net)  
 end
