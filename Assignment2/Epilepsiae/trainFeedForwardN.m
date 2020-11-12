@@ -37,9 +37,9 @@ function  [network] = trainFeedForwardN(dataB,target,trainF, neuronsN, hLayersN,
     %view(net)
     %FIX: Use Parallel Computing
     if(errorsOn == 1)
-        network = feedforwardnet(net,dataB.FeatVectSel,target,[],[],EW);
+        network = train(net,dataB.FeatVectSel,target,[],[],EW);
     else
-        network = feedforwardnet(net,dataB.FeatVectSel,target);
+        network = train(net,dataB.FeatVectSel,target);
     end
     view(net)  
 end

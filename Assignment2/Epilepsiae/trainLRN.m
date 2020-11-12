@@ -40,8 +40,8 @@ function [network] = trainLRN(dataB,target,trainF, neuronsN, hLayersN, transferF
     %view(net)
     %FIX: Use Parallel Computing
     if(errorsOn == 1)
-        network = layrecnet(net,dataB.FeatVectSel,target,[],[],EW);
+        network = train(net,dataB.FeatVectSel,target,[],[],EW);
     else
-        network = layrecnet(net,dataB.FeatVectSel,target);
+        network = train(net,dataB.FeatVectSel,target);
     end
 end
