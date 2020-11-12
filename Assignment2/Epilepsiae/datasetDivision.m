@@ -20,4 +20,7 @@ function [ttIndex, vIndex] = datasetDivision(data)
     
     %Divide training: training (0.85) validation (0.15)
     vIndex = floor(ttIndex* 0.85);
+    
+    ttIndex = endOfSeizures(ttIndex);
+    vIndex = endOfSeizures(vIndex);
 end
