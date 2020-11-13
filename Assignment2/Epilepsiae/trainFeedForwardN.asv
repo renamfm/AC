@@ -1,4 +1,4 @@
-function  [network] = trainFeedForwardN(data, target, trainF, neuronsN, hLayersN, transferF, errorsOn, parallelOn)
+function  [network] = trainFeedForwardN(data, target, trainF, neuronsN, hLayersN, transferF, errorsOn)
     
     hiddenLayers = zeros(1, hLayersN);
     hiddenLayers(1,:) = neuronsN;
@@ -37,17 +37,12 @@ function  [network] = trainFeedForwardN(data, target, trainF, neuronsN, hLayersN
     %view(net)
     %FIX: Use Parallel Computing
     if(errorsOn == 1)
-        if(parallelOn == 1)
-            network = train(net,data,target,[],[],EW, 'UseParallel','yes','UseGPU','yes'); %verificar se esta bem
-        else
-            network = train(net,data,target,[],[],EW);
-        end  
+        
+        %network = train(net,data,target,[],[],EW);
+        network = train(net,data,target,[],[],EW, 'UseParallel','yes','UseGPU','yes'); %verificar se esta bem
     else
-        if(parallelOn == 1)
-            network = train(net,data,target,'UseParallel','yes','UseGPU','yes');
-        else
-            network = train(net,data,target);
-        end 
+        %network = train(net,data,target);
+        net = train(net,data,target,'UseParallel','yes','UseGPU','yes'); 
     end
     view(net)  
 end

@@ -30,14 +30,15 @@ data2 = changeData(data2);
 %80% training+validation (85% training, 15% validation), 20% testing
 
 %Data 1
-divIndex = datasetDivision(data1);
+[divIndex] = datasetDivision(data1);
 data1Training = struct('FeatVectSel', data1.FeatVectSel(:, 1:divIndex), 'Trg', data1.Trg(1:divIndex, :));
-data1Testing = struct('FeatVectSel', data1.FeatVectSel(:, divIndex+1:end), 'Trg', data1.Trg(divIndex+1:end, :));
+data1Testing = struct('FeatVectSel', data1.FeatVectSel(:, ttIndex+1:end), 'Trg', data1.Trg(ttIndex+1:end, :));
 
 %Data 2
-divIndex = datasetDivision(data2);
-data2Training = struct('FeatVectSel', data2.FeatVectSel(:, 1:divIndex), 'Trg', data2.Trg(1:divIndex, :));
-data2Testing = struct('FeatVectSel', data2.FeatVectSel(:, divIndex+1:end), 'Trg', data2.Trg(divIndex+1:end, :));
+[ttIndex, vIndex] = datasetDivision(data2);
+data2Training = struct('FeatVectSel', data2.FeatVectSel(:, 1:vIndex), 'Trg', data2.Trg(1:vIndex, :));
+data2Validation = struct('FeatVectSel', data2.FeatVectSel(:, vIndex+1:ttIndex), 'Trg', data2.Trg(vIndex+1:ttIndex, :));
+data2Testing = struct('FeatVectSel', data2.FeatVectSel(:, ttIndex+1:end), 'Trg', data2.Trg(ttIndex+1:end, :));
 
 
 %Balance data, if pretended (only for training)
@@ -47,9 +48,11 @@ data2Training = balanceData(data2Training);
 
 %Target in a form that can be used by the NN's
 data1Training.Trg = createTarget(data1Training);
+data1Validation.Trg = createTarget(data1Validation);
 data1Testing.Trg = createTarget(data1Testing);
 
 data2Training.Trg = createTarget(data2Training);
+data2Validation.Trg = createTarget(data2Validation);
 data2Testing.Trg = createTarget(data2Testing);
 
 
@@ -59,8 +62,10 @@ data2Testing.Trg = createTarget(data2Testing);
 
 
 save(strcat(path, 'data1Training.mat'), 'data1Training');
+save(strcat(path, 'data1Validation.mat'), 'data1Validation');
 save(strcat(path, 'data1Testing.mat'), 'data1Testing');
 save(strcat(path, 'data2Training.mat'), 'data2Training');
+save(strcat(path, 'data2Validation.mat'), 'data2Validation');
 save(strcat(path, 'dataTesting.mat'), 'data2Testing');
 
 
