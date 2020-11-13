@@ -1,4 +1,4 @@
-function  [network] = trainFeedForwardN(dataB,target,trainF, neuronsN, hLayersN, transferF,errorsOn)
+function  [network] = trainFeedForwardN(data, target, trainF, neuronsN, hLayersN, transferF, errorsOn)
     
     hiddenLayers = zeros(1, hLayersN);
     hiddenLayers(1,:) = neuronsN;
@@ -37,9 +37,9 @@ function  [network] = trainFeedForwardN(dataB,target,trainF, neuronsN, hLayersN,
     %view(net)
     %FIX: Use Parallel Computing
     if(errorsOn == 1)
-        network = train(net,dataB.FeatVectSel,target,[],[],EW);
+        network = train(net,data,target,[],[],EW);
     else
-        network = train(net,dataB.FeatVectSel,target);
+        network = train(net,data,target);
     end
     view(net)  
 end

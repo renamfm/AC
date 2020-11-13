@@ -22,14 +22,6 @@ data2TV = struct('FeatVectSel', [data2Training.FeatVectSel data2Validation.FeatV
 
 %================ SHALLOW NETS (feedforward and recurrent) ===============%
 
-%Transfer functions
-%transferFcn = 'hardlim'; %binary
-transferFcn = 'purelin'; %linear
-%transferFcn = 'logsig'; %sigmoidal
-  
-%PERGUNTAR AO STOR SOBRE AS TRAINING FUNCTIONS!!!!!!!!!!!!!!!!!!!
-%(a documentacao do matlab e o enunciado sugerem coisas diferentes)
-
 %INCREMENTAL TRAINING
 %Weight and bias learning rules with incremental updates after each presentation of an input
 
@@ -68,7 +60,7 @@ net.trainFcn = 'traingda'; %gradient descent with adaptive leaning rate
 %hiddenSizes = 1;
 
 %before this, change trainFcn above
-net = trainFeedForwardN(data1TV.FeatVectSel, data1TV.Trg, 'traingda', 29, 1, transferFcn, 0);
+net = trainFeedForwardN(data1TV.FeatVectSel, data1TV.Trg, 'traingda', 29, 1, 'purelin', 0);
 
 
 %Recurrent nets

@@ -38,8 +38,8 @@ data1Testing = struct('FeatVectSel', data1.FeatVectSel(:, ttIndex+1:end), 'Trg',
 %Data 2
 [ttIndex, vIndex] = datasetDivision(data2);
 data2Training = struct('FeatVectSel', data2.FeatVectSel(:, 1:vIndex), 'Trg', data2.Trg(1:vIndex, :));
-data2Validation = struct('FeatVectSel', data2.FeatVectSel(:, vIndex:ttIndex), 'Trg', data2.Trg(vIndex:ttIndex, :));
-data2Testing = struct('FeatVectSel', data2.FeatVectSel(:, ttIndex:end), 'Trg', data2.Trg(ttIndex:end, :));
+data2Validation = struct('FeatVectSel', data2.FeatVectSel(:, vIndex+1:ttIndex), 'Trg', data2.Trg(vIndex+1:ttIndex, :));
+data2Testing = struct('FeatVectSel', data2.FeatVectSel(:, ttIndex+1:end), 'Trg', data2.Trg(ttIndex+1:end, :));
 
 
 %Balance data, if pretended (only for training)
@@ -47,15 +47,14 @@ data1Training = balanceData(data1Training);
 data2Training = balanceData(data2Training);
 
 
-%MUDAR ISTO
 %Target in a form that can be used by the NN's
-data1Training.Trg = balanceData(data1Training);
-data1Validation.Trg = balanceData(data1Validation);
-data1Testing.Trg = balanceData(data1Testing);
+data1Training.Trg = createTarget(data1Training);
+data1Validation.Trg = createTarget(data1Validation);
+data1Testing.Trg = createTarget(data1Testing);
 
-data2Training.Trg = balanceData(data2Training);
-data2Validation.Trg = balanceData(data2Validation);
-data2Testing.Trg = balanceData(data2Testing);
+data2Training.Trg = createTarget(data2Training);
+data2Validation.Trg = createTarget(data2Validation);
+data2Testing.Trg = createTarget(data2Testing);
 
 
 
