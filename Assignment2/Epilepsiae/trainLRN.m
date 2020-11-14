@@ -35,7 +35,8 @@ function [network] = trainLRN(dataB,target,trainF, neuronsN, hLayersN, transferF
     ictalL = nnz(all(target==[0 0 1]'));
     
     %Calculate de error weight matrix
-    EW = all(target==[1 0 0]')*(C/interIctalL) + all(target==[0 1 0]')*(C/preIctalL) + all(target==[0 0 1]')*(C/ictalL);    
+    EW = all(target==[1 0 0]')*(C/interIctalL) + ...
+     all(target==[0 1 0]')*(C/preIctalL)+ all(target==[0 0 1]')*(C/ictalL);    
     
     %view(net)
     %FIX: Use Parallel Computing
