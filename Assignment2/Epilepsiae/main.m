@@ -17,15 +17,16 @@ path = 'C:\EpilepsaeData\';
 
 %Transfer functions
 %transferFcn = 'hardlim';   %binary
-transferFcn = 'purelin';    %linear
-%transferFcn = 'logsig';    %sigmoidal
+%transferFcn = 'purelin';    %linear
+%transferFcn = 'tansig';    %tangent sigmoidal?
+transferFcn = 'logsig';    %sigmoidal
   
 %Training functions (from the feedforwardnet Matlab Documentation)
-trainFcn = 'trainlm';       %Levenberg-Marquardt
+%trainFcn = 'trainlm';       %Levenberg-Marquardt
 %trainFcn = 'trainbr';      %Bayesian Regularization
 %trainFcn = 'trainbfg';     %BFGS Quasi-Newton
 %trainFcn = 'trainrp';      %Resilient Backpropagation
-%trainFcn = 'trainscg';     %Scaled Conjugate Gradient
+trainFcn = 'trainscg';     %Scaled Conjugate Gradient
 %trainFcn = 'traincgb';     %Conjugate Gradient with Powell/Beale Restarts
 %trainFcn = 'traincgf';     %Fletcher-Powell Conjugate Gradient
 %trainFnc = 'traincgp';     %Polak-Ribiere Conjugate Gradient
@@ -40,7 +41,7 @@ trainFcn = 'trainlm';       %Levenberg-Marquardt
 %hiddenSizes = 1;
 
 %before training, change trainFcn above
-network = trainFeedForwardN(dataTraining.FeatVectSel, dataTraining.Trg, trainFcn, 10, 1, transferFcn, 0, 0);
+network = trainFeedForwardN(dataTraining.FeatVectSel, dataTraining.Trg, trainFcn, 10, 1, transferFcn, 0, 1);
 
 %test the network
 output = network(dataTesting.FeatVectSel);
