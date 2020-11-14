@@ -61,7 +61,7 @@ data2Testing.Trg = createTarget(data2Testing);
 save(strcat(path, 'data1Training.mat'), 'data1Training');
 save(strcat(path, 'data1Testing.mat'), 'data1Testing');
 save(strcat(path, 'data2Training.mat'), 'data2Training');
-save(strcat(path, 'dataTesting.mat'), 'data2Testing');
+save(strcat(path, 'data2Testing.mat'), 'data2Testing');
 
 
 %============ COISAS ESPECIFICAS DE OUTRAS REDES ===========%
