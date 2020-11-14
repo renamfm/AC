@@ -2,12 +2,12 @@
     %>>>>Get data
     data = load('/home/sergio/Dropbox/AC/PL2/Data/54802.mat');
     data = changeData(data);
-    [trIndex, ~, ttIndex] = datasetDivision(data);
+    ttIndex = datasetDivision(data);
     
     %>>>>Devide the dataset into training and testing
         %Training
-    training.FeatVectSel = data.FeatVectSel(:,trIndex:ttIndex);
-    training.Trg = data.Trg(trIndex:ttIndex,:);
+    training.FeatVectSel = data.FeatVectSel(:,1:ttIndex);
+    training.Trg = data.Trg(1:ttIndex,:);
         %Testing
     testing.FeatVectSel = data.FeatVectSel(:,ttIndex+1:end);
     testing.Trg = data.Trg(ttIndex+1:end,:);
