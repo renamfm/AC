@@ -9,8 +9,8 @@ path = 'C:\EpilepsaeData\';
 %load(strcat(path, 'data2Training.mat'));
 %load(strcat(path, 'data2Testing.mat'));
 
-[data1Training,data1Testing] = preprocessingShallow('54802.mat');
-[data2Training,data2Testing] = preprocessingShallow('112502.mat');
+[dataTraining,dataTesting] = preprocessingShallow('54802.mat');
+%[dataTraining,dataTesting] = preprocessingShallow('112502.mat');
 
 
 %================ SHALLOW NETS (feedforward and recurrent) ===============%
@@ -40,14 +40,14 @@ trainFcn = 'trainlm';       %Levenberg-Marquardt
 %hiddenSizes = 1;
 
 %before training, change trainFcn above
-network = trainFeedForwardN(data1Training.FeatVectSel, data1Training.Trg, trainFcn, 10, 1, transferFcn, 0, 0);
+network = trainFeedForwardN(dataTraining.FeatVectSel, dataTraining.Trg, trainFcn, 10, 1, transferFcn, 0, 0);
 
 %test the network
-output = network(data1Testing.FeatVectSel);
+output = network(dataTesting.FeatVectSel);
 
 %get performance
-[SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Shallow', data1Testing.Trg, output); %point by point
-[SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Shallow', data1Testing.Trg, output); %Seizure by seizure
+[SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Shallow', dataTesting.Trg, output); %point by point
+[SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Shallow', dataTesting.Trg, output); %Seizure by seizure
 
 
 %============================ Recurrent nets =============================%
