@@ -16,10 +16,10 @@ path = 'C:\EpilepsaeData\';
 %================ SHALLOW NETS (feedforward and recurrent) ===============%
 
 %Transfer functions
-%transferFcn = 'hardlim';   %binary
+transferFcn = 'logsig';    %sigmoidal
 %transferFcn = 'purelin';    %linear
-transferFcn = 'tansig';    %tangent sigmoidal?
-%transferFcn = 'logsig';    %sigmoidal
+%transferFcn = 'tansig';    %tangent sigmoidal?
+
   
 %Training functions (from the feedforwardnet Matlab Documentation)
 %trainFcn = 'trainlm';       %Levenberg-Marquardt
@@ -38,7 +38,7 @@ trainFcn = 'trainscg';     %Scaled Conjugate Gradient
 %=========================== Feedforward nets ============================%
 
 % %before training, change trainFcn above
-% network = trainFeedForwardN(dataTraining.FeatVectSel, dataTraining.Trg, trainFcn, 10, 1, transferFcn, 0, 1);
+% network = trainFeedForwardN(dataTraining.FeatVectSel, dataTraining.Trg, trainFcn, 10, 1, transferFcn, 1, 0);
 % 
 % %test the network
 % output = network(dataTesting.FeatVectSel);
@@ -50,7 +50,7 @@ trainFcn = 'trainscg';     %Scaled Conjugate Gradient
 %============================ Recurrent nets =============================%
 
 %before training, change trainFcn above
-network = trainLRN(dataTraining.FeatVectSel, dataTraining.Trg, trainFcn, 10, 1, transferFcn, 0, 1);
+network = trainLRN(dataTraining.FeatVectSel, dataTraining.Trg, trainFcn, 10, 1, transferFcn, 1, 1);
 
 %test the network
 output = network(dataTesting.FeatVectSel);

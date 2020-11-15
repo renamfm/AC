@@ -34,7 +34,7 @@ function [SE_D,SE_P,SP_D,SP_P] = getNNPerformSbS(type, T, R)
     %preictal and 10 consecutive points as ictal
     
     %How to know the predicted values performance?
-    %->Use confionmat
+    %->Use confusionmat
     %C = confusionmat(group,grouphat) returns the confusion matrix C 
     %determined by the known and predicted groups in group and grouphat, respectively.
     cm = confusionmat(target,computedR);

@@ -10,7 +10,7 @@ function [SE_D,SE_P,SP_D,SP_P] = getNNPerformPbP(type, T, R)
     end
     
     %How to know the predicted values performance?
-    %->Use confionmat
+    %->Use confusionmat
     %C = confusionmat(group,grouphat) returns the confusion matrix C 
     %determined by the known and predicted groups in group and grouphat, respectively.
     cm = confusionmat(target,result);
