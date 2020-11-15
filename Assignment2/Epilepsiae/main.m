@@ -18,8 +18,8 @@ path = 'C:\EpilepsaeData\';
 %Transfer functions
 %transferFcn = 'hardlim';   %binary
 %transferFcn = 'purelin';    %linear
-%transferFcn = 'tansig';    %tangent sigmoidal?
-transferFcn = 'logsig';    %sigmoidal
+transferFcn = 'tansig';    %tangent sigmoidal?
+%transferFcn = 'logsig';    %sigmoidal
   
 %Training functions (from the feedforwardnet Matlab Documentation)
 %trainFcn = 'trainlm';       %Levenberg-Marquardt
@@ -37,11 +37,20 @@ trainFcn = 'trainscg';     %Scaled Conjugate Gradient
 
 %=========================== Feedforward nets ============================%
 
-%change hiddenSizes
-%hiddenSizes = 1;
+% %before training, change trainFcn above
+% network = trainFeedForwardN(dataTraining.FeatVectSel, dataTraining.Trg, trainFcn, 10, 1, transferFcn, 0, 1);
+% 
+% %test the network
+% output = network(dataTesting.FeatVectSel);
+% 
+% %get performance
+% [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Shallow', dataTesting.Trg, output); %point by point
+% [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Shallow', dataTesting.Trg, output); %Seizure by seizure
+
+%============================ Recurrent nets =============================%
 
 %before training, change trainFcn above
-network = trainFeedForwardN(dataTraining.FeatVectSel, dataTraining.Trg, trainFcn, 10, 1, transferFcn, 0, 1);
+network = trainLRN(dataTraining.FeatVectSel, dataTraining.Trg, trainFcn, 10, 1, transferFcn, 0, 1);
 
 %test the network
 output = network(dataTesting.FeatVectSel);
@@ -49,9 +58,6 @@ output = network(dataTesting.FeatVectSel);
 %get performance
 [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Shallow', dataTesting.Trg, output); %point by point
 [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Shallow', dataTesting.Trg, output); %Seizure by seizure
-
-
-%============================ Recurrent nets =============================%
 
 
 %=============================== CNN nets ================================%

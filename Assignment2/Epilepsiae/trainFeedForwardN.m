@@ -34,8 +34,8 @@ function  [network] = trainFeedForwardN(data, target, trainF, neuronsN, hLayersN
     %Calculate de error weight matrix
     EW = all(target==[1 0 0]')*(C/interIctalL) + all(target==[0 1 0]')*(C/preIctalL) + all(target==[0 0 1]')*(C/ictalL);    
     
-    %view(net)
-    %FIX: Use Parallel Computing
+    view(net)
+    
     if(errorsOn == 1)
         if(parallelOn == 1)
             network = train(net,data,target,[],[],EW, 'UseParallel','yes','UseGPU','yes'); %verificar se esta bem
@@ -49,6 +49,6 @@ function  [network] = trainFeedForwardN(data, target, trainF, neuronsN, hLayersN
             network = train(net,data,target);
         end 
     end
-    view(net)  
+    
 end
 

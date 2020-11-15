@@ -1,8 +1,8 @@
-function [network] = trainLRN(dataB,target,trainF, neuronsN, hLayersN, transferF,errorsOn)
+function [network] = trainLRN(data, target, trainF, neuronsN, hLayersN, transferF, errorsOn, parallelOn)
 
     %----------->Define NN architecture
     %layrecnet arguments: [layerDelays,hiddenSizes,trainFcn]
-    %Default-> layerDelays=1:2, hiddenSizes=10 h layers, trainFcn ='train lm'
+    %Default-> layerDelays=1:2, hiddenSizes=10 h layers, trainFcn ='trainlm'
     layerDelays = 1:2;          
     hiddenLayers = zeros(1, hLayersN);
     hiddenLayers(1,:) = neuronsN;
@@ -38,11 +38,20 @@ function [network] = trainLRN(dataB,target,trainF, neuronsN, hLayersN, transferF
     EW = all(target==[1 0 0]')*(C/interIctalL) + ...
      all(target==[0 1 0]')*(C/preIctalL)+ all(target==[0 0 1]')*(C/ictalL);    
     
-    %view(net)
-    %FIX: Use Parallel Computing
-    if(errorsOn == 1)
-        network = train(net,dataB.FeatVectSel,target,[],[],EW);
+   view(net)
+   
+   if(errorsOn == 1)
+        if(parallelOn == 1)
+            network = train(net,data,target,[],[],EW, 'UseParallel','yes','UseGPU','yes'); %verificar se esta bem
+        else
+            network = train(net,data,target,[],[],EW);
+        end  
     else
-        network = train(net,dataB.FeatVectSel,target);
-    end
+        if(parallelOn == 1)
+            network = train(net,data,target,'UseParallel','yes','UseGPU','yes');
+        else
+            network = train(net,data,target);
+        end
+   end
+   
 end
