@@ -1,4 +1,4 @@
-function  [network] = trainFeedForwardN(data, target, trainF, neuronsN, hLayersN, transferF, errorsOn, parallelOn)
+function  [network] = trainFeedForwardN(data, target, trainF, neuronsN, hLayersN, transferF, divideOn, errorsOn, parallelOn)
     
     hiddenLayers = zeros(1, hLayersN);
     hiddenLayers(1,:) = neuronsN;
@@ -21,10 +21,13 @@ function  [network] = trainFeedForwardN(data, target, trainF, neuronsN, hLayersN
     net.trainParam.goal = 1e-9;
     net.trainParam.epochs = 1000;
     
-    %Dataset division
-    net.divideFcn = 'divideblock';
-    net.divideParam.trainRatio = 0.85;
-    net.divideParam.valRatio = 0.15;
+    %Divisão do Set Balanceado para treino e validação
+    %(apenas usamos para o paciente 1)
+    if divideOn == 1
+        net.divideFcn = 'divideblock';
+        net.divideParam.trainRatio = 0.85;
+        net.divideParam.valRatio = 0.15;
+    end
     
     [~,C] = size(target);
     interIctalL = nnz(all(target==[1 0 0]'));

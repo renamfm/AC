@@ -9,15 +9,15 @@ path = 'C:\EpilepsaeData\';
 %load(strcat(path, 'data2Training.mat'));
 %load(strcat(path, 'data2Testing.mat'));
 
-[dataTraining,dataTesting] = preprocessingShallow('54802.mat');
-%[dataTraining,dataTesting] = preprocessingShallow('112502.mat');
+%[dataTraining,dataTesting] = preprocessingShallow('54802.mat');
+[dataTraining,dataTesting] = preprocessingShallow('112502.mat');
 
 
 %================ SHALLOW NETS (feedforward and recurrent) ===============%
 
 %Transfer functions
-transferFcn = 'logsig';    %sigmoidal
-%transferFcn = 'purelin';    %linear
+%transferFcn = 'logsig';    %sigmoidal
+transferFcn = 'purelin';    %linear
 %transferFcn = 'tansig';    %tangent sigmoidal?
 
   
@@ -26,8 +26,8 @@ transferFcn = 'logsig';    %sigmoidal
 %trainFcn = 'trainbr';      %Bayesian Regularization
 %trainFcn = 'trainbfg';     %BFGS Quasi-Newton
 %trainFcn = 'trainrp';      %Resilient Backpropagation
-trainFcn = 'trainscg';     %Scaled Conjugate Gradient
-%trainFcn = 'traincgb';     %Conjugate Gradient with Powell/Beale Restarts
+%trainFcn = 'trainscg';     %Scaled Conjugate Gradient
+trainFcn = 'traincgb';     %Conjugate Gradient with Powell/Beale Restarts
 %trainFcn = 'traincgf';     %Fletcher-Powell Conjugate Gradient
 %trainFnc = 'traincgp';     %Polak-Ribiere Conjugate Gradient
 %trainFnc = 'trainoss';     %One Step Secant
@@ -38,7 +38,7 @@ trainFcn = 'trainscg';     %Scaled Conjugate Gradient
 %=========================== Feedforward nets ============================%
 
 % %before training, change trainFcn above
-% network = trainFeedForwardN(dataTraining.FeatVectSel, dataTraining.Trg, trainFcn, 10, 1, transferFcn, 1, 0);
+% network = trainFeedForwardN(dataTraining.FeatVectSel, dataTraining.Trg, trainFcn, 10, 1, transferFcn, 0, 0, 1);
 % 
 % %test the network
 % output = network(dataTesting.FeatVectSel);
@@ -50,7 +50,7 @@ trainFcn = 'trainscg';     %Scaled Conjugate Gradient
 %============================ Recurrent nets =============================%
 
 %before training, change trainFcn above
-network = trainLRN(dataTraining.FeatVectSel, dataTraining.Trg, trainFcn, 10, 1, transferFcn, 1, 1);
+network = trainLRN(dataTraining.FeatVectSel, dataTraining.Trg, trainFcn, 10, 1, transferFcn, 0, 0, 0);
 
 %test the network
 output = network(dataTesting.FeatVectSel);

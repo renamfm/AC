@@ -1,4 +1,4 @@
-function [network] = trainLRN(data, target, trainF, neuronsN, hLayersN, transferF, errorsOn, parallelOn)
+function [network] = trainLRN(data, target, trainF, neuronsN, hLayersN, transferF, divideOn, errorsOn, parallelOn)
 
     %----------->Define NN architecture
     %layrecnet arguments: [layerDelays,hiddenSizes,trainFcn]
@@ -25,9 +25,12 @@ function [network] = trainLRN(data, target, trainF, neuronsN, hLayersN, transfer
     net.trainParam.epochs = 1000;
     
     %Divisão do Set Balanceado para treino e validação
-    net.divideFcn = 'divideblock';
-    net.divideParam.trainRatio = 0.85;
-    net.divideParam.valRatio = 0.15;
+    %(apenas usamos para o paciente 1)
+    if divideOn == 1
+        net.divideFcn = 'divideblock';
+        net.divideParam.trainRatio = 0.85;
+        net.divideParam.valRatio = 0.15;
+    end
     
     [~,C] = size(target);
     interIctalL = nnz(all(target==[1 0 0]'));
