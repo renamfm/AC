@@ -1,5 +1,6 @@
 %function [features1,features] = stackAutoencoder(X, nFeatures1, nFeatures2)
-function type = stackAutoencoder(X, T, nFeatures1, nFeatures2)
+%function type = stackAutoencoder(X, T, nFeatures1, nFeatures2)
+function features = stackAutoencoder(X, T, nFeatures1, nFeatures2)
 
     %train autoencoder
     hiddenSize = nFeatures1;
@@ -24,23 +25,24 @@ function type = stackAutoencoder(X, T, nFeatures1, nFeatures2)
     %extract the new n features
     features2 = encode(autoenc2, features1);
     
-    %features = features2;
+    features = features2;
     
-    
-    %train a softmax layer with features2
-    softnet = trainSoftmaxLayer(features2, T, 'LossFunction', 'crossentropy');
-    
-    %stack (put together) all layers
-    deepnet = stack(autoenc1, autoenc2, softnet);
-    
-    %train the network on wine data
-    deepnet = train(deepnet, X, T);
-    
-    %see the classification results
-    type = deepnet(X);
-    
-    %analyse results with confusion matrix
-    plotconfusion(T, type);
+%     T = createTarget(T);
+%     
+%     %train a softmax layer with features2
+%     softnet = trainSoftmaxLayer(features2, T, 'LossFunction', 'crossentropy');
+%     
+%     %stack (put together) all layers
+%     deepnet = stack(autoenc1, autoenc2, softnet);
+%     
+%     %train the network on wine data
+%     deepnet = train(deepnet, X, T);
+%     
+%     %see the classification results
+%     type = deepnet(X);
+%     
+%     %analyse results with confusion matrix
+%     plotconfusion(T, type);
     
    
 end
