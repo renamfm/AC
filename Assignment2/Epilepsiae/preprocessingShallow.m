@@ -13,7 +13,7 @@ function data = preprocessingShallow(data, autoencOption)
     elseif autoencOption == 2
         data.FeatVectSel = simpleAutoencoder(data.FeatVectSel, 10);
     elseif autoencOption == 3
-        data.FeatVectSel = stackAutoencoder(data.FeatVectSel, 10, 6);
+        data.FeatVectSel = stackAutoencoder(data.FeatVectSel, data.Trg, 10, 6);
     end
 
     %Divide dataset into training, test and validation sets, 
