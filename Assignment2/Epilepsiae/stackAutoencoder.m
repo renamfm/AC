@@ -1,4 +1,5 @@
-function [features1,features] = stackAutoencoder(X, nFeatures1, nFeatures2)
+%function [features1,features] = stackAutoencoder(X, nFeatures1, nFeatures2)
+function features = stackAutoencoder(X, nFeatures1, nFeatures2)
 
     %train autoencoder
     hiddenSize = nFeatures1;
