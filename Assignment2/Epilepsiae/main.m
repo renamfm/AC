@@ -3,14 +3,20 @@ clear all
 path = 'C:\EpilepsaeData\';
 % path = '/home/sergio/Dropbox/AC/PL2/Data/';
 
-%First, load data already classified
-%load(strcat(path, 'data1Training.mat'));
-%load(strcat(path, 'data1Testing.mat'));
-%load(strcat(path, 'data2Training.mat'));
-%load(strcat(path, 'data2Testing.mat'));
+%First, load data already classified (and reduced)
+data = load(strcat(path, 'data1.mat'));
+% data = load(strcat(path, 'data2.mat'));
+% data = load(strcat(path, 'data1Simple3.mat'));
+% data = load(strcat(path, 'data2Simple3.mat'));
+% data = load(strcat(path, 'data1Simple10.mat'));
+% data = load(strcat(path, 'data2Simple10.mat'));
+% data = load(strcat(path, 'data1Stack.mat'));
+% data = load(strcat(path, 'data2Stack.mat'));
 
-%[dataTraining,dataTesting] = preprocessingShallow('54802.mat');
-[dataTraining,dataTesting] = preprocessingShallow('112502.mat');
+dataTraining = data.dataTraining;
+dataTesting = data.dataTesting;
+
+
 
 
 %================ SHALLOW NETS (feedforward and recurrent) ===============%

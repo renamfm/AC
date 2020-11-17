@@ -1,4 +1,4 @@
-function data = preprocessingShallow(data, autoencOption)
+function [dataTraining,dataTesting] = preprocessingShallow(data, autoencOption)
     path = 'C:\EpilepsaeData\';
     %path = '/home/sergio/Dropbox/AC/PL2/Data/';
 
@@ -30,7 +30,7 @@ function data = preprocessingShallow(data, autoencOption)
     dataTraining.Trg = createTarget(dataTraining);
     dataTesting.Trg = createTarget(dataTesting);
     
-    data = struct('dataTraining', dataTraining, 'dataTesting', dataTesting);
+    dataTraining,dataTesting
 
 end
 
