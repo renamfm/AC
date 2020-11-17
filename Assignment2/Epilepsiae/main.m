@@ -5,13 +5,13 @@ path = 'C:\EpilepsaeData\';
 
 %First, load data already classified (and reduced)
 load(strcat(path, 'data1.mat')); data = data1;
-% data = load(strcat(path, 'data2.mat')); data = data2;
-% data = load(strcat(path, 'data1Simple3.mat')); data = data1Simple3;
-% data = load(strcat(path, 'data2Simple3.mat')); data = data2Simple3;
-% data = load(strcat(path, 'data1Simple10.mat')); data = data1Simple10;
-% data = load(strcat(path, 'data2Simple10.mat')); data = data2Simple10;
-% data = load(strcat(path, 'data1Stack.mat')); data = data1Stack;
-% data = load(strcat(path, 'data2Stack.mat')); data = data2Stack;
+%load(strcat(path, 'data2.mat')); data = data2;
+%load(strcat(path, 'data1Simple3.mat')); data = data1Simple3;
+%load(strcat(path, 'data2Simple3.mat')); data = data2Simple3;
+%load(strcat(path, 'data1Simple10.mat')); data = data1Simple10;
+%load(strcat(path, 'data2Simple10.mat')); data = data2Simple10;
+%load(strcat(path, 'data1Stack.mat')); data = data1Stack;
+%load(strcat(path, 'data2Stack.mat')); data = data2Stack;
 
 dataTraining = data.dataTraining;
 dataTesting = data.dataTesting;
