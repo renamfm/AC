@@ -4,6 +4,7 @@ clear all
  path = '/home/sergio/Dropbox/AC/PL2/Data/';
 
 %First, load data already classified (and reduced)
+
 %data = load(strcat(path, 'data1.mat')).data1;
 % data = load(strcat(path, 'data2.mat'));
 % data = load(strcat(path, 'data1Simple3.mat'));
@@ -12,6 +13,16 @@ clear all
 % data = load(strcat(path, 'data2Simple10.mat'));
 % data = load(strcat(path, 'data1Stack.mat'));
 % data = load(strcat(path, 'data2Stack.mat'));
+
+load(strcat(path, 'data1.mat')); 
+%load(strcat(path, 'data2.mat')); data = data2;
+%load(strcat(path, 'data1Simple3.mat')); data = data1Simple3;
+%load(strcat(path, 'data2Simple3.mat')); data = data2Simple3;
+%load(strcat(path, 'data1Simple10.mat')); data = data1Simple10;
+%load(strcat(path, 'data2Simple10.mat')); data = data2Simple10;
+%load(strcat(path, 'data1Stack.mat')); data = data1Stack;
+%load(strcat(path, 'data2Stack.mat')); data = data2Stack;
+
 
 %dataTraining = data.dataTraining;
 %dataTesting = data.dataTesting;
