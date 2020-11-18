@@ -3,9 +3,15 @@ function [SE_D,SE_P,SP_D,SP_P] = getNNPerformSbS(type, T, R)
     if isequal(type, 'Shallow')
         [~,target] = max(T);
         [~,result] = max(R);
+    else
+        if isequal(type, 'Deep')
+            target = grp2idx(T)';
+            result = grp2idx(R)';
+        end
     end
     
     [~,C] = size(result);       %Get result size
+    display(C)
     computedR = zeros(C,1);     %Make a new array to store the results
     for i=1:C
         %If it has 10 numbers ahead
@@ -37,6 +43,8 @@ function [SE_D,SE_P,SP_D,SP_P] = getNNPerformSbS(type, T, R)
     %->Use confusionmat
     %C = confusionmat(group,grouphat) returns the confusion matrix C 
     %determined by the known and predicted groups in group and grouphat, respectively.
+    %display(target)
+    display(computedR)
     cm = confusionmat(target,computedR);
     confusionchart(cm);
     %Tipo os indices diagonais sao os que foram classificados corretamente

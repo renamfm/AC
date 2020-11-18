@@ -7,6 +7,11 @@ function [SE_D,SE_P,SP_D,SP_P] = getNNPerformPbP(type, T, R)
     if isequal(type, 'Shallow')
         [~,target] = max(T);
         [~,result] = max(R);
+    else
+        if isequal(type, 'Deep')
+            target = grp2idx(T)';
+            result = grp2idx(R)';
+        end
     end
     
     %How to know the predicted values performance?

@@ -1,6 +1,6 @@
 function data = preprocessingShallow(data, autoencOption)
-    path = 'C:\EpilepsaeData\';
-    %path = '/home/sergio/Dropbox/AC/PL2/Data/';
+    %path = 'C:\EpilepsaeData\';
+    path = '/home/sergio/Dropbox/AC/PL2/Data/';
 
     data = load(strcat(path, data));
 

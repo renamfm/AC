@@ -1,43 +1,29 @@
-function [network] = trainLSTM(Data)
-    %Change data
-    Data = changeData(Data);
-    %Assign data and target
+function [network] = trainLSTM(Data, neurons,solverFcn)
     data = Data.FeatVectSel;
     target = Data.Trg;
-
-    %----------Pre processing------------
-    [R,C] = size(data);
-    %We need to convert the data to a cell, num2cell does not work
-    cell ={};
-    for i=1:C
-      cell{end+1,1} = data(:,i);  
-    end
-    data = cell;    %Just to be simpler
-    %We can categorize like this since the array only has 1 row
-    target = categorical(target);  
+    
+    [R, data, target] = preProcessingLSTM(data, target);
     
     %------------LSTM Implementation-----------
     %Implement lst Layer
     %Output mode is last because we want a sequence-to-label classification 
     numFeatures = R;
-    numHiddenUnits = 100;
     numClasses = 3;
     layers = [sequenceInputLayer(numFeatures)
-    lstmLayer(numHiddenUnits,'OutputMode','last')
+    lstmLayer(neurons,'OutputMode','last')
     fullyConnectedLayer(numClasses)
     softmaxLayer
     classificationLayer];
     
     %Train configuration
-    maxEpochs = 30;
-    solverFcn = 'adam';
+    maxEpochs = 40;
     config = trainingOptions(solverFcn,...
         'MaxEpochs',maxEpochs,...
-        'GradientThreshold',2,...
+        'GradientThreshold',1,...
         'Shuffle','never',...
         'Verbose',false,...
         'Plots','training-progress',...
-        'ExecutionEnvironment','parallel');
+        'ExecutionEnvironment','cpu');
 
     %Train network
     network = trainNetwork(data, target, layers, config);    

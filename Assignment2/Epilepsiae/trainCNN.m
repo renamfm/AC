@@ -1,15 +1,14 @@
-function [network] = trainCNN(data)
+function [network] = trainCNN(data,poolType,solverFcn)
     data4D = preProcessingCNN(data);
     data = data4D.FeatVectSel;
     target = data4D.Trg;
     
     [features,~,~,~] = size(data);
     filterSize = 5;
-    numFilter = 10;
-    poolSize = 2;
-    poolStride = 2;
-    layerStride = 2;
-    poolType = 'average';
+    numFilter = 5;
+    poolSize = 2; %se aumentar este pa 4
+    poolStride = 2;%se aumentar este pa 4
+    layerStride = 2;%se aumentar este pa 4
     
     if isequal(poolType,'average')
         poolingLayers = averagePooling2dLayer(poolSize,'Stride',poolStride);
@@ -37,14 +36,14 @@ function [network] = trainCNN(data)
     %Five convolution layers
 
     %Network configuration
-    solverFcn = 'adam';
+    maxEpochs = 30;
     config = trainingOptions(solverFcn,...
         'MaxEpochs',maxEpochs,...
         'Shuffle','never',...
         'Verbose',false,...
         'InitialLearnRate', 0.001,...
         'Plots','training-progress',...
-        'ExecutionEnvironment','parallel');
+        'ExecutionEnvironment','cpu');
     
     %T = createTarget(data4D);
     network = trainNetwork(data, target, layers, config);

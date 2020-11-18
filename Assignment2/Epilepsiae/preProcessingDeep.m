@@ -1,6 +1,6 @@
-function [dataTraining,dataTesting] = preprocessingShallow(data, autoencOption)
-    path = 'C:\EpilepsaeData\';
-    %path = '/home/sergio/Dropbox/AC/PL2/Data/';
+function data = preProcessingDeep(data, autoencOption)
+    %path = 'C:\EpilepsaeData\';
+    path = '/home/sergio/Dropbox/AC/PL2/Data/';
 
     data = load(strcat(path, data));
 
@@ -13,7 +13,7 @@ function [dataTraining,dataTesting] = preprocessingShallow(data, autoencOption)
     elseif autoencOption == 2
         data.FeatVectSel = simpleAutoencoder(data.FeatVectSel, 10);
     elseif autoencOption == 3
-        data.FeatVectSel = stackAutoencoder(data.FeatVectSel, 10, 6);
+        data.FeatVectSel = stackAutoencoder(data.FeatVectSel, data.Trg, 10, 6);
     end
 
     %Divide dataset into training, test and validation sets, 
@@ -25,12 +25,8 @@ function [dataTraining,dataTesting] = preprocessingShallow(data, autoencOption)
 
     %Balance data, if pretended (only for training)
     dataTraining = balanceData(dataTraining);
-
-    %Target in a form that can be used by the NN's
-    dataTraining.Trg = createTarget(dataTraining);
-    dataTesting.Trg = createTarget(dataTesting);
     
-    dataTraining,dataTesting
+    data = struct('dataTraining', dataTraining, 'dataTesting', dataTesting);
 
 end
 
