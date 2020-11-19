@@ -4,11 +4,11 @@ function [network] = trainCNN(data,poolType,solverFcn)
     target = data4D.Trg;
     
     [features,~,~,~] = size(data);
-    filterSize = 5;
-    numFilter = 5;
-    poolSize = 2; %se aumentar este pa 4
-    poolStride = 2;%se aumentar este pa 4
-    layerStride = 2;%se aumentar este pa 4
+    filterSize = 8; %8
+    filterSize2 = 8; %8
+    poolSize = 4; %4
+    poolStride = 3;%3
+    layerStride = 2;%2
     
     if isequal(poolType,'average')
         poolingLayers = averagePooling2dLayer(poolSize,'Stride',poolStride);
@@ -20,11 +20,11 @@ function [network] = trainCNN(data,poolType,solverFcn)
     %Two convolution layers
     layers = [
     imageInputLayer([features features 1])  
-    convolution2dLayer(filterSize,numFilter,'Stride',layerStride,'Padding','same')
+    convolution2dLayer(filterSize,filterSize2,'Stride',layerStride,'Padding','same')
     batchNormalizationLayer
     reluLayer    
     poolingLayers
-    convolution2dLayer(filterSize,numFilter,'Padding','same')
+    convolution2dLayer(filterSize,filterSize2,'Padding','same')
     batchNormalizationLayer
     reluLayer 
     fullyConnectedLayer(3)
@@ -36,7 +36,7 @@ function [network] = trainCNN(data,poolType,solverFcn)
     %Five convolution layers
 
     %Network configuration
-    maxEpochs = 30;
+    maxEpochs = 100;
     config = trainingOptions(solverFcn,...
         'MaxEpochs',maxEpochs,...
         'Shuffle','never',...

@@ -1,4 +1,4 @@
-clear all
+%clear all
 
 %path = 'C:\EpilepsaeData\';
  path = '/home/sergio/Dropbox/AC/PL2/Data/';
@@ -78,13 +78,13 @@ trainFcn = 'traincgb';     %Conjugate Gradient with Powell/Beale Restarts
 
 
 %=============================== CNN nets ================================
-data = preProcessingDeep('54802.mat', 0);
-dataTraining = data.dataTraining;
-dataTesting = data.dataTesting;
+%data = preProcessingDeep('54802.mat', 0);
+%dataTraining = data.dataTraining;
+%dataTesting = data.dataTesting;
 %Preprocessing is inside training
 [network] = trainCNN(dataTraining,'average','adam');
 %preprocessin target
-dataTesting = preProcessingCNN(dataTesting);
+%dataTesting = preProcessingCNN(dataTesting);
 output = classify(network,dataTesting.FeatVectSel);
 [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Deep', dataTesting.Trg, output); %point by point
 [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Deep', dataTesting.Trg, output); %Seizure by seizure
