@@ -82,18 +82,18 @@ trainFcn = 'traincgb';     %Conjugate Gradient with Powell/Beale Restarts
 %dataTraining = data.dataTraining;
 %dataTesting = data.dataTesting;
 %Preprocessing is inside training
-[network] = trainCNN(dataTraining,'average','adam');
+%[network] = trainCNN(dataTraining,'average','adam',3);
 %preprocessin target
 %dataTesting = preProcessingCNN(dataTesting);
-output = classify(network,dataTesting.FeatVectSel);
-[SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Deep', dataTesting.Trg, output); %point by point
-[SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Deep', dataTesting.Trg, output); %Seizure by seizure
+%output = classify(network,dataTesting.FeatVectSel);
+%[SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Deep', dataTesting.Trg, output); %point by point
+%[SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Deep', dataTesting.Trg, output); %Seizure by seizure
 %============================== LSTM nets ================================%
-% data = preProcessingDeep('54802.mat', 0);
-% dataTraining = data.dataTraining;
-% dataTesting = data.dataTesting;
-% [network] = trainLSTM(dataTraining,10,'adam');
-% [~, data, target] = preProcessingLSTM(dataTesting.FeatVectSel,dataTesting.Trg);
-% output = classify(network,data);
-% [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Deep', target, output); %point by point
-% [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Deep', target, output); %Seizure by seizure
+ data = preProcessingDeep('54802.mat', 0);
+ dataTraining = data.dataTraining;
+ dataTesting = data.dataTesting;
+ [network] = trainLSTM(dataTraining,100,'adam');
+ [~, data, target] = preProcessingLSTM(dataTesting.FeatVectSel,dataTesting.Trg);
+ output = classify(network,data);
+ [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Deep', target, output); %point by point
+ [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Deep', target, output); %Seizure by seizure

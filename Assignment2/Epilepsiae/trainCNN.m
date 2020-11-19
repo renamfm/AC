@@ -1,14 +1,14 @@
-function [network] = trainCNN(data,poolType,solverFcn)
+function [network] = trainCNN(data,poolType,solverFcn,layersNum)
     data4D = preProcessingCNN(data);
     data = data4D.FeatVectSel;
     target = data4D.Trg;
     
     [features,~,~,~] = size(data);
-    filterSize = 8; %8
-    filterSize2 = 8; %8
-    poolSize = 4; %4
-    poolStride = 3;%3
-    layerStride = 2;%2
+    filterSize = 5; 
+    filterSize2 = 5; 
+    poolSize = 2; 
+    poolStride = 2;
+    layerStride = 2;
     
     if isequal(poolType,'average')
         poolingLayers = averagePooling2dLayer(poolSize,'Stride',poolStride);
@@ -17,7 +17,8 @@ function [network] = trainCNN(data,poolType,solverFcn)
         poolingLayers = maxPooling2dLayer(poolSize,'Stride',poolStride);
     end
     
-    %Two convolution layers
+    %Three convolution layers
+    if (layersNum == 3)
     layers = [
     imageInputLayer([features features 1])  
     convolution2dLayer(filterSize,filterSize2,'Stride',layerStride,'Padding','same')
@@ -26,14 +27,40 @@ function [network] = trainCNN(data,poolType,solverFcn)
     poolingLayers
     convolution2dLayer(filterSize,filterSize2,'Padding','same')
     batchNormalizationLayer
+    reluLayer
+    convolution2dLayer(filterSize,filterSize2,'Padding','same')
+    batchNormalizationLayer
     reluLayer 
     fullyConnectedLayer(3)
     softmaxLayer
     classificationLayer];
-
-    %Three convolution layers
     
-    %Five convolution layers
+    else
+        if (layersNum==5)
+            layers = [...
+                imageInputLayer([features features 1])  
+                convolution2dLayer(filterSize,filterSize2,'Stride',layerStride,'Padding','same')
+                batchNormalizationLayer
+                reluLayer    
+                poolingLayers
+                convolution2dLayer(filterSize,filterSize2,'Padding','same')
+                batchNormalizationLayer
+                reluLayer
+                convolution2dLayer(filterSize,filterSize2,'Padding','same')
+                batchNormalizationLayer
+                reluLayer
+                convolution2dLayer(filterSize,filterSize2,'Padding','same')
+                batchNormalizationLayer
+                reluLayer
+                convolution2dLayer(filterSize,filterSize2,'Padding','same')
+                batchNormalizationLayer
+                reluLayer 
+                fullyConnectedLayer(3)
+                softmaxLayer
+                classificationLayer];
+        end
+    
+    end
 
     %Network configuration
     maxEpochs = 100;
