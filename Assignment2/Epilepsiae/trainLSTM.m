@@ -1,4 +1,4 @@
-function [network] = trainLSTM(Data, neurons,solverFcn)
+function [network] = trainLSTM(Data, neurons,solverFcn,layersNum)
     data = Data.FeatVectSel;
     target = Data.Trg;
     
@@ -9,14 +9,30 @@ function [network] = trainLSTM(Data, neurons,solverFcn)
     %Output mode is last because we want a sequence-to-label classification 
     numFeatures = R;
     numClasses = 3;
-    layers = [sequenceInputLayer(numFeatures)
-    lstmLayer(neurons,'OutputMode','sequence')
-    dropoutLayer(0.1)
-    %lstmLayer(neurons,'OutputMode','sequence')
-    lstmLayer(neurons,'OutputMode','last')
-    fullyConnectedLayer(numClasses)
-    softmaxLayer
-    classificationLayer];
+    if (layersNum==2)
+        layers = [sequenceInputLayer(numFeatures)
+        lstmLayer(neurons,'OutputMode','sequence')
+        dropoutLayer(0.1)
+        %lstmLayer(neurons,'OutputMode','sequence')
+        lstmLayer(neurons,'OutputMode','last')
+        fullyConnectedLayer(numClasses)
+        softmaxLayer
+        classificationLayer];
+    else
+        if(layersNum==4)
+            layers = [sequenceInputLayer(numFeatures)
+            lstmLayer(neurons,'OutputMode','sequence')
+            dropoutLayer(0.1)
+            lstmLayer(neurons,'OutputMode','sequence')
+            dropoutLayer(0.1)
+            lstmLayer(neurons,'OutputMode','sequence')
+            dropoutLayer(0.1)
+            lstmLayer(neurons,'OutputMode','last')
+            fullyConnectedLayer(numClasses)
+            softmaxLayer
+            classificationLayer];
+        end  
+    end
 
     %Train configuration
     maxEpochs = 60;
