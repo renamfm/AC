@@ -13,16 +13,13 @@ function [network] = trainLSTM(Data, neurons,solverFcn,layersNum)
         layers = [sequenceInputLayer(numFeatures)
         lstmLayer(neurons,'OutputMode','sequence')
         dropoutLayer(0.1)
-        %lstmLayer(neurons,'OutputMode','sequence')
         lstmLayer(neurons,'OutputMode','last')
         fullyConnectedLayer(numClasses)
         softmaxLayer
         classificationLayer];
     else
-        if(layersNum==4)
+        if(layersNum==3)
             layers = [sequenceInputLayer(numFeatures)
-            lstmLayer(neurons,'OutputMode','sequence')
-            dropoutLayer(0.1)
             lstmLayer(neurons,'OutputMode','sequence')
             dropoutLayer(0.1)
             lstmLayer(neurons,'OutputMode','sequence')
@@ -35,15 +32,15 @@ function [network] = trainLSTM(Data, neurons,solverFcn,layersNum)
     end
 
     %Train configuration
-    maxEpochs = 60;
+    maxEpochs = 100;%60
     config = trainingOptions(solverFcn,...
         'MaxEpochs',maxEpochs,...
-        'LearnRateSchedule','piecewise', ...
         'GradientThreshold',1,...
+        'MiniBatchSize',20000,...
         'Shuffle','never',...
         'Verbose',false,...
         'Plots','training-progress',...
-        'ExecutionEnvironment','cpu');
+        'ExecutionEnvironment','auto');
 
     %Train network
     network = trainNetwork(data, target, layers, config);    
