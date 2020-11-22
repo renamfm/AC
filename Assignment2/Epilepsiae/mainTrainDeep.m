@@ -63,6 +63,5 @@ function [SE_Dp,SP_Dp,SE_Pp,SP_Pp,SE_Dss,SP_Ds,SE_Ps,SP_Ps] = mainTrainDeep(pati
         [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Deep', target, output); %Seizure by seizure
     end
     
-    %save('Data\cnnSgdm.mat', 'network');
 end
 
