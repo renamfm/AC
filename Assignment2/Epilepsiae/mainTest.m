@@ -4,6 +4,8 @@ function [SEp,SPp,SEs,SPs] = mainTest(patient, type, use)
     X = ['Type: ', type]; disp(X);
     X = ['For: ', use]; disp(X);
     
+    network = [];
+    
     if strcmp(patient,'54802')
         data = load('Data/54802.mat');
         data = changeData(data);
@@ -96,7 +98,7 @@ function [SEp,SPp,SEs,SPs] = mainTest(patient, type, use)
             data = preProcessingDeep(data, 1);
             dataTesting = data.dataTesting;
     
-            network = load('Data/112502lstm_2layer.mat');
+            load('Data/112502lstm_2layer.mat');
             
             [~, data, target] = preProcessingLSTM(dataTesting.FeatVectSel,dataTesting.Trg);
             output = classify(network,data);
