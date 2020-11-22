@@ -4,37 +4,37 @@ function [SEp,SPp,SEs,SPs] = mainTest(patient, type, use)
     X = ['Type: ', type]; disp(X);
     X = ['For: ', use]; disp(X);
     
-    classBalancing = 1;
-    
     if strcmp(patient,'54802')
         data = load('Data/54802.mat');
         data = changeData(data);
         
         if strcmp(type,'Feedforward')
-            data = preprocessingShallow(data, classBalancing);
+            data = preprocessingShallow(data, 1);
             dataTesting = data.dataTesting;
 
-            network = load('Data/netMultilayer54802.mat');
-
+            load('Data/netMultilayer54802.mat');
+            output = network(dataTesting.FeatVectSel);
+            
             %get performance
-            [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Shallow', dataTesting.Trg, network); %point by point
-            [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Shallow', dataTesting.Trg, network); %Seizure by seizure
+            [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Shallow', dataTesting.Trg, output); %point by point
+            [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Shallow', dataTesting.Trg, output); %Seizure by seizure
 
         elseif strcmp(type,'Layer Recurrent')
-            data = preprocessingShallow(data, classBalancing);
+            data = preprocessingShallow(data, 1);
             dataTesting = data.dataTesting;
 
-            network = load('Data/netRecurrent54802.mat');
+            load('Data/netRecurrent54802.mat');
+            output = network(dataTesting.FeatVectSel);
 
             %get performance
-            [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Shallow', dataTesting.Trg, network); %point by point
-            [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Shallow', dataTesting.Trg, network); %Seizure by seizure    
+            [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Shallow', dataTesting.Trg, output); %point by point
+            [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Shallow', dataTesting.Trg, output); %Seizure by seizure    
 
         elseif strcmp(type,'CNN')
-            data = preProcessingDeep(data, classBalancing);
+            data = preProcessingDeep(data, 1);
             dataTesting = data.dataTesting;
 
-            network = load('Data/cnnSgdm.mat');
+            load('Data/cnnSgdm.mat');
 
             %Preprocessing target
             dataTesting = preProcessingCNN(dataTesting);
@@ -43,10 +43,10 @@ function [SEp,SPp,SEs,SPs] = mainTest(patient, type, use)
             [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Deep', dataTesting.Trg, output); %Seizure by seizure
 
         elseif strcmp(type,'LSTM')
-            data = preProcessingDeep(data, classBalancing);
+            data = preProcessingDeep(data, 1);
             dataTesting = data.dataTesting;
 
-            network = load('Data/54802_lstm_2layer.mat');
+            load('Data/54802_lstm_2layer.mat');
 
             [~, data, target] = preProcessingLSTM(dataTesting.FeatVectSel,dataTesting.Trg);
             output = classify(network,data);
@@ -59,30 +59,32 @@ function [SEp,SPp,SEs,SPs] = mainTest(patient, type, use)
         data = changeData(data);
         
         if strcmp(type,'Feedforward')
-            data = preprocessingShallow(data, classBalancing);
+            data = preprocessingShallow(data, 1);
             dataTesting = data.dataTesting;
 
-            network = load('Data/netMultilayer112502.mat');
-
+            load('Data/netMultilayer112502.mat');
+            output = network(dataTesting.FeatVectSel);
+            
             %get performance
-            [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Shallow', dataTesting.Trg, network); %point by point
-            [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Shallow', dataTesting.Trg, network); %Seizure by seizure
+            [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Shallow', dataTesting.Trg, output); %point by point
+            [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Shallow', dataTesting.Trg, output); %Seizure by seizure
 
         elseif strcmp(type,'Layer Recurrent')
-            data = preprocessingShallow(data, classBalancing);
+            data = preprocessingShallow(data, 1);
             dataTesting = data.dataTesting;
 
-            network = load('Data/netRecurrent112502.mat');
-
+            load('Data/netRecurrent112502.mat');
+            output = network(dataTesting.FeatVectSel);
+            
             %get performance
-            [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Shallow', dataTesting.Trg, network); %point by point
-            [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Shallow', dataTesting.Trg, network); %Seizure by seizure    
+            [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Shallow', dataTesting.Trg, output); %point by point
+            [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Shallow', dataTesting.Trg, output); %Seizure by seizure    
 
         elseif strcmp(type,'CNN')
-            data = preProcessingDeep(data, classBalancing);
+            data = preProcessingDeep(data, 1);
             dataTesting = data.dataTesting;
 
-            network = load('Data/112502_cnn_sgdm.mat');
+            load('Data/112502_cnn_sgdm.mat');
 
             %Preprocessing target
             dataTesting = preProcessingCNN(dataTesting);
@@ -91,11 +93,11 @@ function [SEp,SPp,SEs,SPs] = mainTest(patient, type, use)
             [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Deep', dataTesting.Trg, output); %Seizure by seizure
 
         elseif strcmp(type,'LSTM')
-            data = preProcessingDeep(data, classBalancing);
+            data = preProcessingDeep(data, 1);
             dataTesting = data.dataTesting;
-
+    
             network = load('Data/112502lstm_2layer.mat');
-
+            
             [~, data, target] = preProcessingLSTM(dataTesting.FeatVectSel,dataTesting.Trg);
             output = classify(network,data);
             [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Deep', target, output); %point by point
