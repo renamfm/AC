@@ -1,7 +1,6 @@
 %This is a function to be used for all the networks
 %The function calculates de sensivity and specificity for detection and
 %prediction
-%TODO: Ve se esta tudo bem!
 function [SE_D,SE_P,SP_D,SP_P] = getNNPerformPbP(type, T, R)
     %If the network is a feedfoward of recurrent neural network
     if isequal(type, 'Shallow')
