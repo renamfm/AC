@@ -90,4 +90,6 @@ function [SE_Dp,SP_Dp,SE_Pp,SP_Pp,SE_Dss,SP_Ds,SE_Ps,SP_Ps] = mainTrainShallow(p
 
     end
     
+    save('Data\netRecurrent54802.mat', 'network');
+    
 end
