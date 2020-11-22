@@ -1,5 +1,5 @@
-%function [autoenc, features] = simpleAutoencoder(X, nFeatures)
-function features = simpleAutoencoder(X, nFeatures)
+function [autoenc, features] = simpleAutoencoder(X, nFeatures)
+%function features = simpleAutoencoder(X, nFeatures)
 
     %train autoencoder
     hiddenSize = nFeatures;

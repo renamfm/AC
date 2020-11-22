@@ -1,7 +1,7 @@
 %clear all
 
-%path = 'C:\EpilepsaeData\';
- path = '/home/sergio/Dropbox/AC/PL2/Data/';
+path = 'C:\EpilepsaeData\';
+%path = '/home/sergio/Dropbox/AC/PL2/Data/';
 
 %First, load data already classified (and reduced)
 
@@ -14,7 +14,7 @@
 % data = load(strcat(path, 'data1Stack.mat'));
 % data = load(strcat(path, 'data2Stack.mat'));
 
-load(strcat(path, 'data1.mat')); 
+%load(strcat(path, 'data1.mat')); data = data1;
 %load(strcat(path, 'data2.mat')); data = data2;
 %load(strcat(path, 'data1Simple3.mat')); data = data1Simple3;
 %load(strcat(path, 'data2Simple3.mat')); data = data2Simple3;
@@ -34,7 +34,7 @@ load(strcat(path, 'data1.mat'));
 
 %Transfer functions
 %transferFcn = 'logsig';    %sigmoidal
-transferFcn = 'purelin';    %linear
+%transferFcn = 'purelin';    %linear
 %transferFcn = 'tansig';    %tangent sigmoidal?
 
   
@@ -44,7 +44,7 @@ transferFcn = 'purelin';    %linear
 %trainFcn = 'trainbfg';     %BFGS Quasi-Newton
 %trainFcn = 'trainrp';      %Resilient Backpropagation
 %trainFcn = 'trainscg';     %Scaled Conjugate Gradient
-trainFcn = 'traincgb';     %Conjugate Gradient with Powell/Beale Restarts
+%trainFcn = 'traincgb';     %Conjugate Gradient with Powell/Beale Restarts
 %trainFcn = 'traincgf';     %Fletcher-Powell Conjugate Gradient
 %trainFnc = 'traincgp';     %Polak-Ribiere Conjugate Gradient
 %trainFnc = 'trainoss';     %One Step Secant
@@ -78,13 +78,13 @@ trainFcn = 'traincgb';     %Conjugate Gradient with Powell/Beale Restarts
 
 
 %=============================== CNN nets ================================
-%data = preProcessingDeep('54802.mat', 0);
-%dataTraining = data.dataTraining;
-%dataTesting = data.dataTesting;
+data = preProcessingDeep('54802.mat', 0);
+dataTraining = data.dataTraining;
+dataTesting = data.dataTesting;
 %Preprocessing is inside training
 [network] = trainCNN(dataTraining,'average','sgdm');
 %preprocessin target
-%dataTesting = preProcessingCNN(dataTesting);
+dataTesting = preProcessingCNN(dataTesting);
 output = classify(network,dataTesting.FeatVectSel);
 [SE_Dp,SE_Pp,SP_Dp,SP_Pp] = getNNPerformPbP('Deep', dataTesting.Trg, output); %point by point
 [SE_Dss,SE_Ps,SP_Ds,SP_Ps] = getNNPerformSbS('Deep', dataTesting.Trg, output); %Seizure by seizure
