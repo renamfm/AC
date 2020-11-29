@@ -19,3 +19,7 @@ md_gaussmf_9p = readfis('MamdaniControllers/md_gaussmf_9p.fis');
 md_trimf_25 = readfis('MamdaniControllers/md_trimf_25.fis');
 %Input: 5 fuzzy sets, Output: 5 fuzzy sets, Rules: 25.
 md_gaussmf_25 = readfis('MamdaniControllers/md_gaussmf_25.fis');
+
+fuzzySystem = md_gauss_9; %Fuzzy controller to be used by the sim
+out = sim('MamdaniControllers/continuousProcess.slx',300);
+
