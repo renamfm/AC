@@ -1,0 +1,40 @@
+[System]
+Name='md_trimf_9p'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=0
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='P1'
+Range=[-1 1]
+NumMFs=3
+MF1='N':'trimf',[-1.833 -1 -0.1667]
+MF2='ZE':'trimf',[-0.8333 0 0.8333]
+MF3='P':'trimf',[0.1667 1 1.833]
+
+[Input2]
+Name='P2'
+Range=[-1 1]
+NumMFs=3
+MF1='N':'trimf',[-1.833 -1 -0.1667]
+MF2='ZE':'trimf',[-0.8333 0 0.8333]
+MF3='P':'trimf',[0.1667 1 1.833]
+
+[Output1]
+Name='Y'
+Range=[-1 1]
+NumMFs=5
+MF1='NB':'trimf',[-1.5 -1 -0.5]
+MF2='N':'trimf',[-1 -0.5 0]
+MF3='ZE':'trimf',[-0.5 0 0.5]
+MF4='P':'trimf',[0 0.5 1]
+MF5='PB':'trimf',[0.5 1 1.5]
+
+[Rules]
