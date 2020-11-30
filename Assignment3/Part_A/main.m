@@ -22,5 +22,5 @@ md_gaussmf_25 = readfis('MamdaniControllers/md_gaussmf_25.fis');
 
 fuzzySystem = md_gaussmf_9; %Fuzzy controller to be used by the sim
 %open_system('MamdaniControllers/continuousProcess.slx');
-out = sim('MamdaniControllers/continuousProcess.slx',300);
+%out = sim('MamdaniControllers/continuousProcess.slx',300);
 
