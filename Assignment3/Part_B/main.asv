@@ -30,9 +30,18 @@ matrix(:,7) = discreteOut(4:end);     %All output
 
 %%>Make the clustering
 %Create the dataset
-
-
-
+%Acording to the statement 70% for testing and 30% for training
+div = floor(0.7 * R);
+trainData = matrix(1:div,:);
+testData = matrix(div+1:end,:);
+save('trainData');
+save('testData');
+save('trainData.dat','trainData','-ascii');
+save('testData.dat','testData','-ascii');
 %GUI Matlab command >>findcluster
+%With find cluster we can choose between subtractive and fuzzy c-means
+%To use kmeans we have to  use the command >>kmeans
+
+%Or 
 
 
