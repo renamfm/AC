@@ -28,5 +28,14 @@ matrix(:,6) = inputRandom(1: end-3);  %u(k-3)
 matrix(:,7) = discreteOut(4:end);     %All output
 
 
-%%>Make the clusterinn
+%%>Make the clustering
+%Create the dataset
+%Acording to the statement 70% for testing and 30% for training
+div = floor(0.7 * R);
+trainData = matrix(1:div,:);
+testData = matrix(div+1:end,:);
+save('trainData');
+save('testData');
+%GUI Matlab command >>findcluster
+
 
