@@ -67,13 +67,19 @@ fcm = genfis(input, output, options);
 [hGrid, hSub, hFcm] = trainOtimization(grid, sub, fcm, 1, trainData);
 
 
-%>Test the trained sugfis
+%%>Test the trained sugfis
 [bGridRes, bSubRes, bFcmRes, hGridRes, hSubRes, hFcmRes] = ...
     testOtimization(bGrid, bSub, bFcm,hGrid, hSub, hFcm, testData);
 
 fprintf("GridPartition MSE: backP=%d, hybrid=%d\n",bGridRes.mse,hGridRes.mse);
 fprintf("SubtractiveClustering MSE: backP=%d, hybrid=%d\n",bSubRes.mse,hSubRes.mse);
 fprintf("FCMClustering MSE: backP=%d, hybrid=%d\n",bFcmRes.mse,hFcmRes.mse);
+
+
+%%>Now do and run the simulation
+
+
+
 
 
 
