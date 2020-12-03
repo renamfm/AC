@@ -62,6 +62,19 @@ fcm = genfis(input, output, options);
 %Also sabe the best
 %How to do it by cmd: >>[FIS,ERROR] = anfis(TRNDATA)
 %Backpropagation Otimization
-[bGrid, bSub, bFcm] = trainBackpropagation(grid, sub, fcm, trainData);
+[bGrid, bSub, bFcm] = trainOtimization(grid, sub, fcm, 0, trainData);
 %Hybrid Otimization
+[hGrid, hSub, hFcm] = trainOtimization(grid, sub, fcm, 1, trainData);
+
+
+%>Test the trained sugfis
+[bGridRes, bSubRes, bFcmRes, hGridRes, hSubRes, hFcmRes] = ...
+    testOtimization(bGrid, bSub, bFcm,hGrid, hSub, hFcm, testData);
+
+fprintf("GridPartition MSE: backP=%d, hybrid=%d\n",bGridRes.mse,hGridRes.mse);
+fprintf("SubtractiveClustering MSE: backP=%d, hybrid=%d\n",bSubRes.mse,hSubRes.mse);
+fprintf("FCMClustering MSE: backP=%d, hybrid=%d\n",bFcmRes.mse,hFcmRes.mse);
+
+
+
 
