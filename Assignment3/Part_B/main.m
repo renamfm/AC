@@ -49,10 +49,10 @@ input = trainData(:,1:6); %First 6 colomns
 output = trainData(:,7);  %output is the last colomn
 %->GridPartition
 options = genfisOptions('GridPartition');
-gridp = genfis(input, output, options);
+grid = genfis(input, output, options);
 %->SubtractiveClustering
 options = genfisOptions('SubtractiveClustering');
-subt = genfis(input, output, options);
+sub = genfis(input, output, options);
 %->FCMClustering
 options = genfisOptions('FCMClustering');
 fcm = genfis(input, output, options);
@@ -61,4 +61,7 @@ fcm = genfis(input, output, options);
 %>Train fis by hybrid or retropagation method
 %Also sabe the best
 %How to do it by cmd: >>[FIS,ERROR] = anfis(TRNDATA)
+%Backpropagation Otimization
+[bGrid, bSub, bFcm] = trainBackpropagation(grid, sub, fcm, trainData);
+%Hybrid Otimization
 
