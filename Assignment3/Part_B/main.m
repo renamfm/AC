@@ -77,9 +77,7 @@ fprintf("FCMClustering MSE: backP=%d, hybrid=%d\n",bFcmRes.mse,hFcmRes.mse);
 
 
 %%>Now do and run the simulation
-
-
-
+fuzzySystem = readfis('hybrid_sub');
 
 
 
