@@ -77,8 +77,16 @@ fprintf("FCMClustering MSE: backP=%d, hybrid=%d\n",bFcmRes.mse,hFcmRes.mse);
 
 
 %%>Now do and run the simulation
-fuzzySystem = readfis('hybrid_sub');
+backprop_grid = readfis('backprop_grid');
+backprop_sub = readfis('backprop_sub');
+backprop_fcm = readfis('backprop_fcm');
 
+hybrid_grid = readfis('hybrid_grid');
+hybrid_sub = readfis('hybrid_sub');
+hybrid_fcm = readfis('hybrid_fcm');
+
+%Simulation fuzzy controller
+fuzzySystem = hybrid_fcm;
 
 
 
