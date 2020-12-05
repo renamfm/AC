@@ -30,7 +30,7 @@ matrix(:,7) = discreteOut(4:end);     %All output
 
 %%>Make the clustering
 %Create the dataset
-%Acording to the statement 70% for testing and 30% for training
+%Acording to the statement 70% for training and 30% for testing
 div = floor(0.7 * R);
 trainData = matrix(1:div,:);
 testData = matrix(div+1:end,:);
