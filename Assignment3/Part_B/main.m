@@ -3,11 +3,11 @@
 num = [2 3];
 den = [1 2 2.5 1.25];
 %Results
-[numd, dend] = getDiscreteTF(num, den);
+[numd, dend, Ts] = getDiscreteTF(num, den);
 
 
 %%>Get input as shown in the assignment statement
-output = sim('firstSimulation.slx');
+output = sim('firstSimulation.slx',300);
 discreteOut = output.DiscreteOut.Data;
 inputRandom = output.InputRandom.Data;
 tout =  output.tout;
@@ -25,7 +25,7 @@ matrix(:,3) = discreteOut(1: end-3);  %y(k-3)
 matrix(:,4) = inputRandom(3 : end-1); %u(k-1)
 matrix(:,5) = inputRandom(2 : end-2); %u(k-2)
 matrix(:,6) = inputRandom(1: end-3);  %u(k-3)
-matrix(:,7) = discreteOut(4:end);     %All output
+matrix(:,7) = discreteOut(4:end);   %Output shifted
 
 
 %%>Make the clustering
@@ -36,6 +36,7 @@ trainData = matrix(1:div,:);
 testData = matrix(div+1:end,:);
 save('trainData');
 save('testData');
+save('matrix.dat', 'matrix', '-ascii');
 save('trainData.dat','trainData','-ascii');
 save('testData.dat','testData','-ascii');
 %GUI Matlab command >>findcluster

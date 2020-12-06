@@ -1,4 +1,4 @@
-function [numd, dend] = getDiscreteTF(num, den)
+function [numd, dend, Ts] = getDiscreteTF(num, den)
 	
 	%Calculate de sampling time
 	poles = roots(den);
